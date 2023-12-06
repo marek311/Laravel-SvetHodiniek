@@ -1,0 +1,67 @@
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.image-wrapper {
+    flex: 0 0 35%;
+    margin: 15px;
+    border: 7px solid white;
+    box-shadow: 3px 3px 5px grey;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: transform 0.3s, border 0.3s;
+}
+.image-wrapper img {
+    width: 30%;
+}
+img {
+    max-width: 80%;
+    height: auto;
+}
+.image-wrapper:hover {
+    transform: scale(1.1);
+    border: 10px solid darkgoldenrod;
+}
+p {
+    background-color: darkgreen;
+    color: white;
+    margin: 0;
+    padding: 5px;
+}
+.add-button {
+    display: flex;
+    align-items: center;
+    float: right;
+}
+.add-button button {
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+.delete-button {
+    background-color: darkgreen;
+    color: white;
+    border: 1px solid gold;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.delete-button:hover {
+    background-color: gold;
+    color: darkgreen;
+}
+.edit-link {
+    color: darkgreen;
+    background-color: gold;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 3px;
+}

@@ -1,0 +1,33 @@
+ul {
+    list-style: none;
+}
+li {
+    background: antiquewhite;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    color: black;
+    width: 50%;
+}
+p {
+    font-size: 15px;
+}
+.explanation {
+    display: none;
+}
+.arrow-checkbox {
+    display: none;
+}
+.arrow-checkbox:checked + .explanation {
+    display: block;
+}
+.arrow-label {
+    cursor: pointer;
+    position: relative;
+}
+.arrow-label::before {
+    content: "◉";
+    margin-left: 5px;
+    float: right;
+}

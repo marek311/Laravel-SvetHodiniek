@@ -1,0 +1,126 @@
+.reviews {
+    display: flex;
+    flex-direction: column;
+}
+.review-content {
+    display: flex;
+    flex-grow: 1;
+}
+.box {
+    background-color: white;
+    border: 3px solid black;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    word-wrap: break-word;
+    margin: 3% auto 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+.box img {
+    max-width: 30%;
+    margin-right: 20px;
+}
+@media (min-width: 768px) {
+    p {
+        color: black;
+        font-size: 18px;
+        margin-right: 10px;
+    }
+    a {
+        font-size: 18px;
+    }
+}
+@media (max-width: 768px) {
+    .box img {
+        max-width: 40%;
+        min-width: 100px;
+        margin-right: 10px;
+    }
+    .box {
+        border: 1px solid black;
+        padding: 10px;
+    }
+    p {
+        color: black;
+        font-size: 8px;
+    }
+    a {
+        font-size: 8px;
+    }
+    .box img {
+        display: none;
+    }
+}
+.box:hover {
+    background-color: darkgreen;
+    transform: scale(1.02);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.header-link {
+    color: black;
+    background-color: lightgray;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+    margin: 10px;
+}
+.header-link:hover {
+    background-color: darkgray;
+}
+.edit-link, .delete-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit-link button, .delete-link button {
+    background-color: darkgoldenrod;
+    color: white;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px;
+}
+.edit-link button:hover, .delete-link button:hover {
+    transform: scale(1.02);
+}
+a, .header-link, .edit-link button, .delete-link button {
+    text-decoration: none;
+}
+.add-button {
+    display: flex;
+    align-items: center;
+    float: right;
+}
+.add-button button {
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+@media (min-width: 768px) {
+    .edit-link button,
+    .delete-link button {
+        padding: 15px;
+        font-size: 16px;
+        margin: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .edit-link button,
+    .delete-link button {
+        padding: 8px;
+        font-size: 12px;
+        margin: 2px;
+    }
+}
