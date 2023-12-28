@@ -37,12 +37,9 @@
         <li class="nav-item">
           <a class="nav-link" href="dictionary">Slovník</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="aboutUs">O nás</a>
-        </li>
       </ul>
       <div class="ms-auto">
-        <a href="loginRegister" class="nav-link"><i class="bi bi-person"></i></a>
+        <a href="aboutUs" class="nav-link"><i class="bi bi-person"></i></a>
       </div>
     </div>
   </div>
