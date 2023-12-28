@@ -28,9 +28,11 @@
                 <a class="edit-link" href="{{ route('review.updateForm',['watch_name' => $review->watch_name]) }}">
                     <button>Edit Review</button>
                 </a>
-                <a class="delete-link" href="{{ route('review.deleteForm', ['watch_name' => $review->watch_name]) }}" >
-                    <button>Delete</button>
-                </a>
+                @auth
+                    <a class="delete-link" href="{{ route('review.deleteForm', ['watch_name' => $review->watch_name]) }}">
+                        <button>Delete</button>
+                    </a>
+                @endauth
             </div>
         </div>
     @endforeach
