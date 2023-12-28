@@ -13,4 +13,8 @@ class Review extends Model
     {
         return $this->hasMany(ReviewParagraph::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(ReviewComment::class);
+    }
 }

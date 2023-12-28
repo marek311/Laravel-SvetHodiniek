@@ -58,6 +58,13 @@ Route::delete('/reviews/delete/{watch_name}',
     [ReviewController::class, 'delete'])->name('review.delete');
 
 
+Route::post('/reviews/{watchName}/comments',
+    [ReviewController::class, 'createComment'])->name('comment.create');
+
+Route::delete('/reviews/{watchName}/comments/{commentId}',
+    [ReviewController::class, 'deleteComment'])->name('comment.delete');
+
+
 
 Route::get('gallery',
     [GalleryPostController::class, 'index'])->name('gallery');
