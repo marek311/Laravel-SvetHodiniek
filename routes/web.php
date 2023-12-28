@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GalleryPostController;
@@ -86,3 +87,5 @@ Route::get('/gallery/delete/{id}/confirm',
 
 Route::delete('/gallery/delete/{id}',
     [GalleryPostController::class, 'delete'])->name('gallery.delete');
+
+Auth::routes();
