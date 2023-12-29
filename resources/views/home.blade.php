@@ -39,7 +39,7 @@
         </li>
       </ul>
       <div class="ms-auto">
-        <a href="aboutUs" class="nav-link"><i class="bi bi-person"></i></a>
+        <a href="profile" class="nav-link"><i class="bi bi-person"></i></a>
       </div>
     </div>
   </div>
