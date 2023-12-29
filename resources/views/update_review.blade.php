@@ -7,6 +7,11 @@
     <title>{{ $review->watch_name }} edit review</title>
 </head>
 <body>
+<a href="{{ route('reviews') }}" class="back-link">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="gold" class="back-arrow" width="5%">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+</a>
 <h1>Edit Review</h1>
 <form method="post" action="{{ route('review.update', ['watch_name' => $review->watch_name]) }}">
     @csrf
