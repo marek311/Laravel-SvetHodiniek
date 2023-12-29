@@ -28,7 +28,7 @@ class LoginController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/aboutUs';
+    protected $redirectTo = '/profile';
 
 
     /**
@@ -47,6 +47,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/aboutUs');
+        return $this->loggedOut($request) ?: redirect('/profile');
     }
 }
