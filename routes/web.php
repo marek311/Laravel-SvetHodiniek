@@ -7,8 +7,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GalleryPostController;
 use App\Http\Controllers\WatchmakingTermController;
 
-Route::get('aboutUs', function () {
-    return view('aboutUs');
+Route::get('profile', function () {
+    return view('profile');
 });
 
 Route::get('discussion', function () {
