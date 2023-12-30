@@ -27,14 +27,7 @@ Route::get('registerTab', function () {
 });
 
 
-Route::get('dictionary',
-    [WatchmakingTermController::class, 'index'])->name('dictionary');
 
-Route::get('/dictionary/add',
-    [WatchmakingTermController::class, 'createForm'])->name('watchmakingTerm.createForm');
-
-Route::get('/dictionary/add',
-    [WatchmakingTermController::class, 'create'])->name('watchmakingTerm.create');
 
 
 Route::get('/',
@@ -94,3 +87,14 @@ Route::delete('/gallery/delete/{id}',
     [GalleryPostController::class, 'delete'])->name('gallery.delete');
 
 Auth::routes();
+
+
+
+Route::get('dictionary',
+    [WatchmakingTermController::class, 'index'])->name('dictionary');
+
+Route::get('dictionary/add',
+    [WatchmakingTermController::class, 'createForm'])->name('watchmakingTerm.createForm');
+
+Route::post('dictionary/add',
+    [WatchmakingTermController::class, 'create'])->name('watchmakingTerm.create');

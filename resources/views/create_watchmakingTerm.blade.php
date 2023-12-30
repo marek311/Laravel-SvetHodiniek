@@ -16,7 +16,7 @@
     <h1>Add Gallery Post</h1>
 </div>
 <div class="form-container">
-    <form action="{{ route('watchmaking-terms.create') }}" method="post">
+    <form action="{{ route('watchmakingTerm.create') }}" method="post">
         @csrf
         <label for="term">Term:</label>
         <input type="text" id="term" name="term" required>
