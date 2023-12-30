@@ -19,6 +19,9 @@
 <div class="container-h-center">
     <h1>Recenzie</h1>
 </div>
+<div class="container-h-center">
+    <h1>{{ count($reviews) }}</h1>
+</div>
 <div class="reviews">
     @foreach ($reviews as $review)
         <div class="box">
