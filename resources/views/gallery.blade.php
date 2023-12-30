@@ -11,12 +11,12 @@
 <a href="{{ route('gallery.createForm') }}" class="add-button">
     <button>Create Gallery Post</button>
 </a>
+<a href="{{ route('home') }}" class="back-link">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="gold" class="back-arrow" width="5%">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+</a>
 <div class="container-h-center">
-    <a href="{{ route('home') }}" class="back-link">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="gold" class="back-arrow" width="5%">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-        </svg>
-    </a>
     <h1>Galéria</h1>
 </div>
 <div class="image-container">
