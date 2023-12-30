@@ -22,3 +22,34 @@
     background-color: darkgreen;
     color: gold;
 }
+.profile-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+.container-h-center {
+    text-align: center;
+}
+.back-link {
+    margin-bottom: 10px;
+}
+.buttons-container {
+    display: flex;
+    justify-content: center;
+}
+.profile-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+.profile-container a {
+    color: darkgreen;
+    text-decoration: none;
+}
+.profile-container a:hover {
+    color: gold;
+}
