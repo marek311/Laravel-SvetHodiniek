@@ -16,6 +16,9 @@
 <div class="container-h-center">
     <h1>{{ $review->watch_name }}</h1>
 </div>
+<div class="container-h-center">
+    <img src="{{ asset($review->picture) }}" alt="{{ $review->watch_name }}" style="width: 30%;">
+</div>
 <div class="review-container">
     @foreach($review->paragraphs as $paragraph)
         <div class="review-section">

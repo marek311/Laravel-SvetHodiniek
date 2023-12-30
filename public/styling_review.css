@@ -24,16 +24,16 @@ p {
 .comment-section {
     background-color: lightgray;
     padding: 20px;
-    margin: 20px auto; /* Center the comment section */
+    margin: 20px auto;
     border: 3px solid white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s;
-    max-width: 600px; /* Adjust the maximum width based on your design */
+    max-width: 600px;
 }
 .comment {
     color: black;
-    background-color: white; /* Change the background color */
+    background-color: white;
     border: 3px solid darkgreen;
     padding: 10px;
     margin: 10px 0;

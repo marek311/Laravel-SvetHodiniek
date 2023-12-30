@@ -103,5 +103,4 @@ Route::get('/dictionary/delete/{id}/confirm',
 
 Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
-
 //-----------------------------------------
