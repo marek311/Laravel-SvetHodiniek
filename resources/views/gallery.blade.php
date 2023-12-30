@@ -19,6 +19,9 @@
 <div class="container-h-center">
     <h1>Galéria</h1>
 </div>
+<div class="container-h-center">
+    <h1>{{ count($galleryPosts) }}</h1>
+</div>
 <div class="image-container">
 @foreach ($galleryPosts as $post)
     <div class="image-wrapper">
