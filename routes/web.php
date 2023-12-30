@@ -6,6 +6,9 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\GalleryPostController;
 use App\Http\Controllers\WatchmakingTermController;
 
+Auth::routes();
+
+//-----------------------------------------
 Route::get('profile', function () {
     return view('profile');
 });
@@ -25,11 +28,9 @@ Route::get('loginTab', function () {
 Route::get('registerTab', function () {
     return view('registerTab');
 });
+//-----------------------------------------
 
-
-
-
-
+//-----------------------------------------
 Route::get('/',
     [ReviewController::class, 'home'])->name('home');
 
@@ -62,9 +63,9 @@ Route::post('/reviews/{watchName}/comments',
 
 Route::delete('/reviews/{watchName}/comments/{commentId}',
     [ReviewController::class, 'deleteComment'])->name('comment.delete');
+//-----------------------------------------
 
-
-
+//-----------------------------------------
 Route::get('gallery',
     [GalleryPostController::class, 'index'])->name('gallery');
 
@@ -85,11 +86,9 @@ Route::get('/gallery/delete/{id}/confirm',
 
 Route::delete('/gallery/delete/{id}',
     [GalleryPostController::class, 'delete'])->name('gallery.delete');
+//-----------------------------------------
 
-Auth::routes();
-
-
-
+//-----------------------------------------
 Route::get('dictionary',
     [WatchmakingTermController::class, 'index'])->name('dictionary');
 
@@ -98,3 +97,4 @@ Route::get('dictionary/add',
 
 Route::post('dictionary/add',
     [WatchmakingTermController::class, 'create'])->name('watchmakingTerm.create');
+//-----------------------------------------
