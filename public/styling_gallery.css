@@ -66,3 +66,19 @@ p {
     padding: 5px;
     border-radius: 3px;
 }
+.container-h-center {
+    text-align: center;
+    margin-top: 20px;
+}
+#loadMoreButton {
+    background-color: darkgreen;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+#loadMoreButton:hover {
+    background-color: gold;
+    color: darkgreen;
+}

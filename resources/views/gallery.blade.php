@@ -23,30 +23,40 @@
     <h1>{{ count($galleryPosts) }}</h1>
 </div>
 <div class="image-container">
+    @php $count = 0; @endphp
     @foreach ($galleryPosts as $post)
-        <div class="image-wrapper">
-            <p>{{ $post->name }}</p>
-            <img class="infinite-scroll-trigger" src="{{ $post->picture }}" alt="{{ $post->name }}" width="300">
-            <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
-            <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
+        @if ($count < 2)
+            <div class="image-wrapper">
+                <p>{{ $post->name }}</p>
+                <img class="infinite-scroll-trigger" src="{{ $post->picture }}" alt="{{ $post->name }}" width="300">
+                <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
+                <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
             </div>
+            @php $count++; @endphp
+        @endif
     @endforeach
 </div>
-<button id="loadMoreButton">Load More</button>
+<div class="container-h-center">
+    <button id="loadMoreButton">Load More</button>
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let offset = 0;
+        let initialLoadCount = 2;
         const imageContainer = document.querySelector('.image-container');
         const loadMoreButton = document.getElementById('loadMoreButton');
         loadMoreButton.addEventListener('click', function () {
-            offset += 1;
+            offset += 2;
             fetchImages(offset);
         });
         function fetchImages(offset) {
-            fetch("{{ route('gallery.fetchMore') }}?count=1&offset=" + offset)
+            fetch("{{ route('gallery.fetchMore') }}?count=" + (offset === 0 ? initialLoadCount : 2) + "&offset=" + offset)
                 .then(response => response.json())
                 .then(data => {
                     const totalImages = data.total;
+                    if (offset === 0) {
+                        imageContainer.innerHTML = '';
+                    }
                     data.images.forEach(post => {
                         const imageWrapper = document.createElement('div');
                         imageWrapper.className = 'image-wrapper';
@@ -58,7 +68,9 @@
                     `;
                         imageContainer.appendChild(imageWrapper);
                     });
-                    if (offset >= totalImages - 1) { loadMoreButton.disabled = true; }
+                    if (offset >= totalImages - 2) {
+                        loadMoreButton.disabled = true;
+                    }
                 })
                 .catch(error => console.error('Error fetching images:', error));
         }
