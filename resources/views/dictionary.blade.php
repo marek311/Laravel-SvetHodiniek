@@ -22,6 +22,9 @@
 <div class="container-h-center">
     <h2>Zopár pojmov zo slovníka nadšencov do hodiniek:</h2>
 </div>
+<div class="container-h-center">
+    <h1>{{ count($watchmakingTerms) }}</h1>
+</div>
 <ul>
     @foreach($watchmakingTerms as $term)
         <li>
