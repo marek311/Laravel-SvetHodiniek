@@ -13,11 +13,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+}
+.back-link {
+    margin-bottom: 10px;
+    align-self: flex-start;
 }
 .person-icon {
-    color: darkgreen;
     font-size: 3rem;
     margin-top: 10px;
+    color: darkgreen;
 }
 .buttons-container {
     margin-top: 20px;
