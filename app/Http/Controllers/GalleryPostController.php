@@ -61,4 +61,12 @@ class GalleryPostController extends Controller
         $galleryPost->delete();
         return redirect('/gallery')->with('success', 'Gallery post deleted successfully!');
     }
+
+    public function fetchMoreImages(Request $request)
+    {
+        $count = $request->input('count', 6);
+        $moreImages = GalleryPost::take($count)->skip($count)->get();
+        return response()->json($moreImages);
+    }
+
 }

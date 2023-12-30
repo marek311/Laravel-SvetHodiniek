@@ -104,3 +104,8 @@ Route::get('/dictionary/delete/{id}/confirm',
 Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
+
+
+Route::get('/gallery/fetchMore',
+    [GalleryPostController::class, 'fetchMoreImages'])->name('gallery.fetchMore');
+

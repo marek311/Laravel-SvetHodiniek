@@ -23,14 +23,65 @@
     <h1>{{ count($galleryPosts) }}</h1>
 </div>
 <div class="image-container">
-@foreach ($galleryPosts as $post)
-    <div class="image-wrapper">
-        <p>{{ $post->name }}</p>
-        <img src="{{ $post->picture }}" alt="{{ $post->name }}" width="300">
-        <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
-        <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
-    </div>
-@endforeach
+    @foreach ($galleryPosts as $post)
+        <div class="image-wrapper">
+            <p>{{ $post->name }}</p>
+            <img class="infinite-scroll-trigger" src="{{ $post->picture }}" alt="{{ $post->name }}" width="300">
+            <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
+            <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
+            </div>
+    @endforeach
 </div>
+
+<button id="loadMoreButton">Load More</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetchImages(6);
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    fetchImages(6);
+                }
+            });
+        });
+
+        const images = document.querySelectorAll('.infinite-scroll-trigger');
+        images.forEach(image => {
+            observer.observe(image);
+        });
+
+        const loadMoreButton = document.getElementById('loadMoreButton');
+        if (loadMoreButton) {
+            loadMoreButton.addEventListener('click', function() {
+                fetchImages(6);
+            });
+        }
+    });
+
+    function fetchImages(count) {
+        fetch("{{ route('gallery.fetchMore') }}?count=" + count)
+            .then(response => response.json())
+            .then(data => {
+                // Append new images to the image container
+                const imageContainer = document.querySelector('.image-container');
+                data.forEach(post => {
+                    const imageWrapper = document.createElement('div');
+                    imageWrapper.className = 'image-wrapper';
+                    imageWrapper.innerHTML = `
+                    <p>${post.name}</p>
+                    <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
+                    <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
+                    <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
+                `;
+                    imageContainer.appendChild(imageWrapper);
+                });
+            })
+            .catch(error => console.error('Error fetching images:', error));
+    }
+
+</script>
+
 </body>
 </html>
