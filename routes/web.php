@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
@@ -31,6 +30,12 @@ Route::get('registerTab', function () {
 Route::get('dictionary',
     [WatchmakingTermController::class, 'index'])->name('dictionary');
 
+Route::get('/dictionary/add',
+    [WatchmakingTermController::class, 'createForm'])->name('watchmakingTerm.createForm');
+
+Route::get('dictionary/add',
+    [WatchmakingTermController::class, 'create'])->name('watchmakingTerm.create');
+
 
 Route::get('/',
     [ReviewController::class, 'home'])->name('home');
@@ -58,7 +63,6 @@ Route::get('/reviews/delete/{watch_name}',
 
 Route::delete('/reviews/delete/{watch_name}',
     [ReviewController::class, 'delete'])->name('review.delete');
-
 
 Route::post('/reviews/{watchName}/comments',
     [ReviewController::class, 'createComment'])->name('comment.create');
