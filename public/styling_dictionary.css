@@ -31,3 +31,19 @@ p {
     margin-left: 5px;
     float: right;
 }
+.add-button {
+    display: flex;
+    align-items: center;
+    float: right;
+    text-decoration: none;
+}
+.add-button button {
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}

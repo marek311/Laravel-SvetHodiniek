@@ -35,6 +35,7 @@ p {
     display: flex;
     align-items: center;
     float: right;
+    text-decoration: none;
 }
 .add-button button {
     background-color: darkgreen;
