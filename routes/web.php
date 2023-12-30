@@ -33,7 +33,7 @@ Route::get('dictionary',
 Route::get('/dictionary/add',
     [WatchmakingTermController::class, 'createForm'])->name('watchmakingTerm.createForm');
 
-Route::get('dictionary/add',
+Route::get('/dictionary/add',
     [WatchmakingTermController::class, 'create'])->name('watchmakingTerm.create');
 
 
