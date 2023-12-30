@@ -12,12 +12,10 @@ class ReviewController extends Controller
         $reviews = Review::all();
         return view('reviews', compact('reviews'));
     }
-
     public function home() {
         $reviews = Review::all();
         return view('home', compact('reviews'));
     }
-
     public function review($watchName)
     {
         $cleanWatchName = strtolower(str_replace('_', ' ', $watchName));

@@ -23,7 +23,6 @@ class WatchmakingTermController extends Controller
         'term' => 'required',
         'explanation' => 'required',
         ]);
-
         WatchmakingTerm::create([
             'term' => $request->term,
             'explanation' => $request->explanation,
@@ -37,7 +36,6 @@ class WatchmakingTermController extends Controller
         $watchmakingTerm = WatchmakingTerm::findOrFail($id);
         return view('delete_watchmakingTerm', compact('watchmakingTerm'));
     }
-
     public function delete($id)
     {
         $watchmakingTerm = WatchmakingTerm::findOrFail($id);
