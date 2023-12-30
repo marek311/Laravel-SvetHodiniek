@@ -12,11 +12,9 @@ class WatchmakingTermController extends Controller
         $watchmakingTerms = WatchmakingTerm::all();
         return view('dictionary', compact('watchmakingTerms'));
     }
-
     public function createForm() {
         return view('create_watchmakingTerm');
     }
-
     public function create(Request $request)
     {
         $this->validate($request, [
@@ -27,10 +25,8 @@ class WatchmakingTermController extends Controller
             'term' => $request->term,
             'explanation' => $request->explanation,
         ]);
-
         return redirect('/dictionary')->with('success', 'added');
     }
-
     public function deleteForm($id)
     {
         $watchmakingTerm = WatchmakingTerm::findOrFail($id);

@@ -23,7 +23,6 @@ class ReviewController extends Controller
         if (!$review) abort(404);
         return view('review', ['review' => $review]);
     }
-
     public function createForm()
     {
         return view('create_review');
@@ -50,7 +49,6 @@ class ReviewController extends Controller
         }
         return redirect()->route('review', ['watchName' => $request->input('title')]);
     }
-
     public function updateForm($watchName)
     {
         $cleanWatchName = strtolower(str_replace('_', ' ', $watchName));
@@ -86,7 +84,6 @@ class ReviewController extends Controller
         }
         return redirect()->route('review', ['watchName' => $request->input('title')]);
     }
-
     public function deleteForm($watchName)
     {
         $cleanWatchName = strtolower(str_replace('_', ' ', $watchName));
@@ -107,7 +104,6 @@ class ReviewController extends Controller
         $review->delete();
         return redirect()->route('reviews')->with('success', 'Review deleted successfully!');
     }
-
     public function createComment(Request $request, $watchName)
     {
         $cleanWatchName = strtolower(str_replace('_', ' ', $watchName));
@@ -123,24 +119,18 @@ class ReviewController extends Controller
         ]);
         return redirect()->route('review', ['watchName' => $watchName])->with('success', 'Comment added successfully!');
     }
-
     public function deleteComment($watchName, $commentId)
     {
         $cleanWatchName = strtolower(str_replace('_', ' ', $watchName));
         $review = Review::where('watch_name', $cleanWatchName)->first();
-
         if (!$review) {
             abort(404);
         }
-
         $comment = $review->comments()->find($commentId);
-
         if (!$comment) {
             abort(404);
         }
-
         $comment->delete();
-
         return redirect()->route('review', ['watchName' => $watchName])->with('success', 'Comment deleted successfully!');
     }
 }

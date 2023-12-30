@@ -86,6 +86,9 @@ Route::get('/gallery/delete/{id}/confirm',
 
 Route::delete('/gallery/delete/{id}',
     [GalleryPostController::class, 'delete'])->name('gallery.delete');
+
+Route::get('/gallery/fetchMore',
+    [GalleryPostController::class, 'fetchMoreImages'])->name('gallery.fetchMore');
 //-----------------------------------------
 
 //-----------------------------------------
@@ -104,8 +107,3 @@ Route::get('/dictionary/delete/{id}/confirm',
 Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
-
-
-Route::get('/gallery/fetchMore',
-    [GalleryPostController::class, 'fetchMoreImages'])->name('gallery.fetchMore');
-
