@@ -32,56 +32,38 @@
             </div>
     @endforeach
 </div>
-
 <button id="loadMoreButton">Load More</button>
-
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetchImages(6);
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    fetchImages(6);
-                }
-            });
-        });
-
-        const images = document.querySelectorAll('.infinite-scroll-trigger');
-        images.forEach(image => {
-            observer.observe(image);
-        });
-
+    document.addEventListener("DOMContentLoaded", function () {
+        let offset = 0;
+        const imageContainer = document.querySelector('.image-container');
         const loadMoreButton = document.getElementById('loadMoreButton');
-        if (loadMoreButton) {
-            loadMoreButton.addEventListener('click', function() {
-                fetchImages(6);
-            });
+        loadMoreButton.addEventListener('click', function () {
+            offset += 1;
+            fetchImages(offset);
+        });
+        function fetchImages(offset) {
+            fetch("{{ route('gallery.fetchMore') }}?count=1&offset=" + offset)
+                .then(response => response.json())
+                .then(data => {
+                    const totalImages = data.total;
+                    data.images.forEach(post => {
+                        const imageWrapper = document.createElement('div');
+                        imageWrapper.className = 'image-wrapper';
+                        imageWrapper.innerHTML = `
+                        <p>${post.name}</p>
+                        <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
+                        <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
+                        <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
+                    `;
+                        imageContainer.appendChild(imageWrapper);
+                    });
+                    if (offset >= totalImages - 1) { loadMoreButton.disabled = true; }
+                })
+                .catch(error => console.error('Error fetching images:', error));
         }
+        fetchImages(offset);
     });
-
-    function fetchImages(count) {
-        fetch("{{ route('gallery.fetchMore') }}?count=" + count)
-            .then(response => response.json())
-            .then(data => {
-                // Append new images to the image container
-                const imageContainer = document.querySelector('.image-container');
-                data.forEach(post => {
-                    const imageWrapper = document.createElement('div');
-                    imageWrapper.className = 'image-wrapper';
-                    imageWrapper.innerHTML = `
-                    <p>${post.name}</p>
-                    <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
-                    <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
-                    <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
-                `;
-                    imageContainer.appendChild(imageWrapper);
-                });
-            })
-            .catch(error => console.error('Error fetching images:', error));
-    }
-
 </script>
-
 </body>
 </html>

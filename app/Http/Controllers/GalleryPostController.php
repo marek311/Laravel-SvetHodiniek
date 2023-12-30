@@ -13,7 +13,6 @@ class GalleryPostController extends Controller
         $galleryPosts = GalleryPost::all();
         return view('gallery', compact('galleryPosts'));
     }
-
     public function createForm()
     {
         return view('create_galleryPost');
@@ -30,7 +29,6 @@ class GalleryPostController extends Controller
         ]);
         return redirect('/gallery')->with('success', 'Gallery post added successfully!');
     }
-
     public function updateForm($id)
     {
         $galleryPost = GalleryPost::findOrFail($id);
@@ -49,7 +47,6 @@ class GalleryPostController extends Controller
         ]);
         return redirect('/gallery')->with('success', 'Gallery post updated successfully!');
     }
-
     public function deleteForm($id)
     {
         $galleryPost = GalleryPost::findOrFail($id);
@@ -61,12 +58,12 @@ class GalleryPostController extends Controller
         $galleryPost->delete();
         return redirect('/gallery')->with('success', 'Gallery post deleted successfully!');
     }
-
     public function fetchMoreImages(Request $request)
     {
-        $count = $request->input('count', 6);
-        $moreImages = GalleryPost::take($count)->skip($count)->get();
-        return response()->json($moreImages);
+        $count = $request->input('count', 1);
+        $offset = $request->input('offset', 0);
+        $totalImages = GalleryPost::count();
+        $moreImages = GalleryPost::skip($offset)->take($count)->get();
+        return response()->json(['images' => $moreImages, 'total' => $totalImages]);
     }
-
 }
