@@ -31,7 +31,9 @@
                 <div class="explanation" style="display: none;">
                     <p>{{ $term->explanation }}</p>
                 </div>
-                <button class="delete-button" style="display: none;">Delete</button>
+                <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
+                    <button class="delete-button" style="display: none;">Delete</button>
+                </a>
             </div>
         </li>
     @endforeach

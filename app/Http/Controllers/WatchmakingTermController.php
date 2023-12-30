@@ -31,4 +31,17 @@ class WatchmakingTermController extends Controller
 
         return redirect('/dictionary')->with('success', 'added');
     }
+
+    public function deleteForm($id)
+    {
+        $watchmakingTerm = WatchmakingTerm::findOrFail($id);
+        return view('delete_watchmakingTerm', compact('watchmakingTerm'));
+    }
+
+    public function delete($id)
+    {
+        $watchmakingTerm = WatchmakingTerm::findOrFail($id);
+        $watchmakingTerm->delete();
+        return redirect('/dictionary')->with('success', 'Watchmaking term deleted successfully!');
+    }
 }

@@ -97,4 +97,11 @@ Route::get('dictionary/add',
 
 Route::post('dictionary/add',
     [WatchmakingTermController::class, 'create'])->name('watchmakingTerm.create');
+
+Route::get('/dictionary/delete/{id}/confirm',
+    [WatchmakingTermController::class, 'deleteForm'])->name('watchmakingTerm.deleteForm');
+
+Route::delete('/dictionary/delete/{id}',
+    [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
+
 //-----------------------------------------
