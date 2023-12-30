@@ -39,6 +39,9 @@
     display: flex;
     justify-content: center;
 }
+.container {
+    justify-content: center;
+}
 .profile-container {
     background-color: #f0f0f0;
     padding: 20px;
@@ -49,7 +52,4 @@
 .profile-container a {
     color: darkgreen;
     text-decoration: none;
-}
-.profile-container a:hover {
-    color: gold;
 }
