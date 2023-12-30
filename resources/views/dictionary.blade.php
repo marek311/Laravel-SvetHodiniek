@@ -27,8 +27,11 @@
         <li>
             <label for="{{ 'word' . $term->id }}" class="arrow-label">{{ $term->term }}</label>
             <input type="checkbox" id="{{ 'word' . $term->id }}" class="arrow-checkbox">
-            <div class="explanation" data-term-id="{{ $term->id }}">
-                <p>{{ $term->explanation }}</p>
+            <div class="term-details" data-term-id="{{ $term->id }}">
+                <div class="explanation" style="display: none;">
+                    <p>{{ $term->explanation }}</p>
+                </div>
+                <button class="delete-button" style="display: none;">Delete</button>
             </div>
         </li>
     @endforeach
@@ -36,15 +39,18 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const checkboxes = document.querySelectorAll('.arrow-checkbox');
-        const explanations = document.querySelectorAll('.explanation');
-        checkboxes.forEach(checkbox => {
+        const termDetailsList = document.querySelectorAll('.term-details');
+        checkboxes.forEach((checkbox, index) => {
             checkbox.addEventListener('change', function() {
-                explanations.forEach(explanation => {
-                    explanation.style.display = 'none';
+                termDetailsList.forEach((termDetails, i) => {
+                    if (index === i) {
+                        termDetails.querySelector('.explanation').style.display = this.checked ? 'block' : 'none';
+                        termDetails.querySelector('.delete-button').style.display = this.checked ? 'block' : 'none';
+                    } else {
+                        termDetails.querySelector('.explanation').style.display = 'none';
+                        termDetails.querySelector('.delete-button').style.display = 'none';
+                    }
                 });
-                const termId = this.id.replace('word', '');
-                const selectedExplanation = document.querySelector(`[data-term-id="${termId}"]`);
-                selectedExplanation.style.display = this.checked ? 'block' : 'none';
             });
         });
     });
