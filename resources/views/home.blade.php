@@ -35,9 +35,17 @@
           <a class="nav-link" href="dictionary">Slovník</a>
         </li>
       </ul>
-      <div class="ms-auto">
-        <a href="profile" class="nav-link"><i class="bi bi-person"></i></a>
-      </div>
+        <div class="ms-auto">
+            @auth
+                <a class="nav-link" href="profile" style="color: white;">
+                    {{ Auth::user()->name }}
+                </a>
+            @else
+                <a class="nav-link" href="profile" style="color: white;">
+                    <i class="bi bi-person"></i>
+                </a>
+            @endauth
+        </div>
     </div>
   </div>
 </header>
