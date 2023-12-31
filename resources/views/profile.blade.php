@@ -26,14 +26,13 @@
             <a href="#" onclick="document.getElementById('logout-form').submit();" class="nav-link">
                 <i class="bi bi-box-arrow-left person-icon"></i> Logout
             </a>
-        @else
-            <a href="{{ route('profile') }}" class="nav-link">
-                <i class="bi bi-person person-icon"></i> Profile
-            </a>
         @endauth
     </div>
     <div class="buttons-container">
         @guest
+            <a href="{{ route('profile') }}" class="nav-link">
+                <i class="bi bi-person person-icon"></i> Profile
+            </a>
             <a href="{{ route('register') }}" class="button">Register</a>
             <a href="{{ route('login') }}" class="button">Login</a>
         @endguest
