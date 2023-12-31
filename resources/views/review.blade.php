@@ -35,7 +35,9 @@
                     <form action="{{ route('comment.delete', ['watchName' => $review->watch_name, 'commentId' => $comment->id]) }}" method="post" class="delete-form">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">Delete</button>
+                        @auth
+                            <button id ="delete-comment" type="submit">Delete</button>
+                        @endauth
                     </form>
                 </div>
             @endforeach

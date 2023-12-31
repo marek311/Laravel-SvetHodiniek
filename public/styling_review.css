@@ -40,3 +40,16 @@ p {
     border-radius: 5px;
     transition: transform 0.3s;
 }
+#delete-comment {
+    background-color: darkgreen;
+    color: gold;
+    border: 2px solid gold;
+    padding: 5px 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+#delete-comment:hover {
+    background-color: gold;
+    color: darkgreen;
+}
