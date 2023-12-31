@@ -11,7 +11,7 @@ Auth::routes();
 //-----------------------------------------
 Route::get('profile', function () {
     return view('profile');
-});
+})->name('profile');
 
 Route::get('discussion', function () {
     return view('discussion');
