@@ -18,7 +18,8 @@
     <div class="ms-auto">
         @auth
             <div class="nav-link">
-                <i class="bi bi-person person-icon"></i> {{ Auth::user()->name }}
+                <i class="bi bi-person person-icon"></i> {{ Auth::user()->name }}<br>
+                <small>{{ Auth::user()->email }}</small>
             </div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
