@@ -20,6 +20,9 @@
     <img src="{{ asset($review->picture) }}" alt="{{ $review->watch_name }}" style="width: 30%;">
 </div>
 <div class="review-container">
+    <div class="author-section">
+        <p>Author: {{ $review->user->name }}</p>
+    </div>
     @foreach($review->paragraphs as $paragraph)
         <div class="review-section">
             <p>
