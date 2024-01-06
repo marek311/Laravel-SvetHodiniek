@@ -9,6 +9,7 @@ class ReviewComment extends Model
 {
     use HasFactory;
     protected $table = 'review_comment';
+    public $timestamps = false;
     protected $fillable = ['content'];
 
     public function review()
