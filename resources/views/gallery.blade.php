@@ -32,11 +32,15 @@
                 <p>{{ $post->name }}</p>
                 <img class="infinite-scroll-trigger" src="{{ $post->picture }}" alt="{{ $post->name }}" width="300">
                 @auth
-                    <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
-                    <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
+                    @if(auth()->user()->id === $post->user_id)
+                        <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
+                        <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
+                    @endif
                 @endauth
             </div>
-            @php $count++; @endphp
+            @php
+                $count++;
+            @endphp
         @endif
     @endforeach
 </div>
@@ -53,11 +57,16 @@
             offset += 2;
             fetchImages(offset);
         });
-        function createEditDeleteLinks(postId) {
-            return `
-                <a href="/gallery/${postId}/edit" class="edit-link">Edit</a>
-                <a href="/gallery/delete/${postId}/confirm" class="delete-link">Delete</a>
-            `;
+        function createEditDeleteLinks(postId, userId) {
+            const isAuthor = userId === {{ auth()->check() ? auth()->user()->id : 'null' }};
+
+            if (isAuthor) {
+                return `
+                    <a href="/gallery/${postId}/edit" class="edit-link">Edit</a>
+                    <a href="/gallery/delete/${postId}/confirm" class="delete-link">Delete</a>
+                `;
+            }
+            return '';
         }
         function fetchImages(offset) {
             fetch("/gallery/fetchMore?count=" + (offset === 0 ? initialLoadCount : 2) + "&offset=" + offset)
@@ -73,7 +82,7 @@
                         imageWrapper.innerHTML = `
                             <p>${post.name}</p>
                             <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
-                            ${createEditDeleteLinks(post.id)}
+                            ${createEditDeleteLinks(post.id, post.user_id)}
                         `;
                         imageContainer.appendChild(imageWrapper);
                     });
