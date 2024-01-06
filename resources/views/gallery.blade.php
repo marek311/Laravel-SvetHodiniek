@@ -1,6 +1,4 @@
-<script>
-    const authUserId = @json(auth()->user()->id ?? null);
-</script>
+
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -35,10 +33,8 @@
                 <p>{{ $post->name }}</p>
                 <img class="infinite-scroll-trigger" src="{{ $post->picture }}" alt="{{ $post->name }}" width="300">
                 @auth
-                    @if(auth()->user()->id === $post->user_id)
-                        <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
-                        <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
-                    @endif
+                    <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
+                    <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
                 @endauth
             </div>
             @php $count++; @endphp
@@ -48,6 +44,7 @@
 <div class="container-h-center">
     <button id="loadMoreButton">Load More</button>
 </div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let offset = 0;
@@ -70,15 +67,15 @@
                         const imageWrapper = document.createElement('div');
                         imageWrapper.className = 'image-wrapper';
                         imageWrapper.innerHTML = `
-                    <p>${post.name}</p>
-                    <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
+                        <p>${post.name}</p>
+                        <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
                         `;
-                        if (authUserId === post.user_id) {
-                            imageWrapper.innerHTML += `
+
+                        imageWrapper.innerHTML += `
                         <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
                         <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
                         `;
-                        }
+
                         imageContainer.appendChild(imageWrapper);
                     });
                     if (offset >= totalImages - 2) {
@@ -90,5 +87,6 @@
         fetchImages(offset);
     });
 </script>
+
 </body>
 </html>

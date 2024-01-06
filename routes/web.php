@@ -112,6 +112,8 @@ Route::delete('/dictionary/delete/{id}',
 
 //TODO: role uzivatelov
 
+//TODO: watchmaking term pridat a mazat iba admin
+
 //TODO: praca so subormi
 
 //TODO: ak sa nieco nepodari pridat zobrazit preco
@@ -120,6 +122,6 @@ Route::delete('/dictionary/delete/{id}',
 
 //TODO: cast do ktorej je nutne sa prihlasit
 
-//TODO: AJAX volanie - mozno fetch recenzii ako aj gallery postov?
+//TODO: AJAX volanie - mozno fetch recenzii ako aj gallery postov
 
 //TODO: SQL injection ochrana

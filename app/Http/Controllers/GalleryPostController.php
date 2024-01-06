@@ -26,6 +26,7 @@ class GalleryPostController extends Controller
         GalleryPost::create([
             'name' => $request->name,
             'picture' => $request->picture,
+            'user_id' => $request->user()->id,
         ]);
         return redirect('/gallery')->with('success', 'Gallery post added successfully!');
     }
@@ -36,11 +37,20 @@ class GalleryPostController extends Controller
     }
     public function update(Request $request, $id)
     {
+        if (!$request->user()) {
+            abort(404);
+        }
         $this->validate($request, [
             'name' => 'required',
             'picture' => 'required|url',
         ]);
         $galleryPost = GalleryPost::findOrFail($id);
+        if (!$galleryPost) {
+            abort(404);
+        }
+        if ($request->user()->id !== $galleryPost->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
         $galleryPost->update([
             'name' => $request->name,
             'picture' => $request->picture,
@@ -50,11 +60,20 @@ class GalleryPostController extends Controller
     public function deleteForm($id)
     {
         $galleryPost = GalleryPost::findOrFail($id);
+        if (!$galleryPost) {
+            abort(404);
+        }
         return view('delete_galeryPost', compact('galleryPost'));
     }
     public function delete($id)
     {
         $galleryPost = GalleryPost::findOrFail($id);
+        if (!$galleryPost) {
+            abort(404);
+        }
+        if (auth()->user()->id !== $galleryPost->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
         $galleryPost->delete();
         return redirect('/gallery')->with('success', 'Gallery post deleted successfully!');
     }
