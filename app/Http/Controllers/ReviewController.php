@@ -38,6 +38,7 @@ class ReviewController extends Controller
         $review = Review::create([
             'watch_name' => $request->input('title'),
             'picture' => $request->input('picture'),
+            'user_id' => $request->user()->id,
         ]);
         if ($request->has('content') && is_array($request->input('content'))) {
             foreach ($request->input('content') as $index => $content) {
