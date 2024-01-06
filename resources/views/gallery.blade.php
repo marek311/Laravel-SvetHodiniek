@@ -55,8 +55,16 @@
             offset += 2;
             fetchImages(offset);
         });
+
+        function createEditDeleteLinks(postId) {
+            return `
+                <a href="/gallery/${postId}/edit" class="edit-link">Edit</a>
+                <a href="/gallery/delete/${postId}/confirm" class="delete-link">Delete</a>
+            `;
+        }
+
         function fetchImages(offset) {
-            fetch("{{ route('gallery.fetchMore') }}?count=" + (offset === 0 ? initialLoadCount : 2) + "&offset=" + offset)
+            fetch("/gallery/fetchMore?count=" + (offset === 0 ? initialLoadCount : 2) + "&offset=" + offset)
                 .then(response => response.json())
                 .then(data => {
                     const totalImages = data.total;
@@ -67,15 +75,10 @@
                         const imageWrapper = document.createElement('div');
                         imageWrapper.className = 'image-wrapper';
                         imageWrapper.innerHTML = `
-                        <p>${post.name}</p>
-                        <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
+                            <p>${post.name}</p>
+                            <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
+                            ${createEditDeleteLinks(post.id)}
                         `;
-
-                        imageWrapper.innerHTML += `
-                        <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
-                        <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
-                        `;
-
                         imageContainer.appendChild(imageWrapper);
                     });
                     if (offset >= totalImages - 2) {
@@ -84,9 +87,12 @@
                 })
                 .catch(error => console.error('Error fetching images:', error));
         }
+
         fetchImages(offset);
     });
 </script>
+
+
 
 </body>
 </html>
