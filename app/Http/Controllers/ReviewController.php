@@ -59,6 +59,9 @@ class ReviewController extends Controller
     }
     public function update(Request $request, $watchName)
     {
+        if (!$request->user()) {
+            abort(404);
+        }
         $cleanWatchName = strtolower(str_replace('_', ' ', $watchName));
         $request->validate([
             'title' => 'required|max:255',
@@ -67,6 +70,9 @@ class ReviewController extends Controller
         ]);
         $review = Review::with('paragraphs')->where('watch_name', $cleanWatchName)->first();
         if (!$review) {
+            abort(404);
+        }
+        if ($request->user()->id !== $review->user_id) {
             abort(404);
         }
         $review->update([
@@ -100,6 +106,9 @@ class ReviewController extends Controller
         $review = Review::with('paragraphs')->where('watch_name', $cleanWatchName)->first();
         if (!$review) {
             abort(404);
+        }
+        if ($request->user()->id !== $review->user_id) {
+            abort(403, 'Unauthorized action.');
         }
         $review->paragraphs()->delete();
         $review->delete();
