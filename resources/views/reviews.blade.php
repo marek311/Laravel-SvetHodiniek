@@ -33,13 +33,15 @@
                 <a class="header-link" href="{{ url("/reviews/{$cleanWatchName}") }}">
                     <p>{{ $review['watch_name'] }}</p>
                 </a>
-                <a class="edit-link" href="{{ route('review.updateForm',['watch_name' => $review->watch_name]) }}">
-                    <button>Edit Review</button>
-                </a>
                 @auth
-                    <a class="delete-link" href="{{ route('review.deleteForm', ['watch_name' => $review->watch_name]) }}">
-                        <button>Delete</button>
-                    </a>
+                    @if(auth()->user()->id == $review->user_id)
+                        <a class="edit-link" href="{{ route('review.updateForm',['watch_name' => $review->watch_name]) }}">
+                            <button>Edit Review</button>
+                        </a>
+                        <a class="delete-link" href="{{ route('review.deleteForm', ['watch_name' => $review->watch_name]) }}">
+                            <button>Delete</button>
+                        </a>
+                    @endif
                 @endauth
             </div>
         </div>
