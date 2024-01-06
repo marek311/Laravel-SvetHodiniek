@@ -107,3 +107,11 @@ Route::get('/dictionary/delete/{id}/confirm',
 Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
+
+//TODO: autor komentu
+//TODO: autor gallery postu
+//TODO: ajax volanie - mozno fetch recenzii ako aj gallery postov?
+//TODO: ak sa nieco nepodari pridat zobrazit preco
+//TODO: sql injection ochrana
+//TODO: role uzivatelov
+//TODO: praca so subormi
