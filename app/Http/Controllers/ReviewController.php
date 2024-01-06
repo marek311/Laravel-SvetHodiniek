@@ -141,6 +141,9 @@ class ReviewController extends Controller
         if (!$comment) {
             abort(404);
         }
+        if (auth()->user()->id !== $comment->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
         $comment->delete();
         return redirect()->route('review', ['watchName' => $watchName])->with('success', 'Comment deleted successfully!');
     }
