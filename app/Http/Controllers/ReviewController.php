@@ -73,7 +73,7 @@ class ReviewController extends Controller
             abort(404);
         }
         if ($request->user()->id !== $review->user_id) {
-            abort(404);
+            abort(403, 'Unauthorized action.');
         }
         $review->update([
             'watch_name' => $request->input('title'),
