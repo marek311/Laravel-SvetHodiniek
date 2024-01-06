@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="{{ asset('styling_reviews.css') }}">
 </head>
 <body>
-<a href="{{ route('review.createForm') }}" class="add-button">
-    <button>Create Review</button>
-</a>
+@auth
+    <a href="{{ route('review.createForm') }}" class="add-button">
+        <button>Create Review</button>
+    </a>
+@endauth
 <a href="{{ route('home') }}" class="back-link">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="gold" class="back-arrow" width="5%">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
