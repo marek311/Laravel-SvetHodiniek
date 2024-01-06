@@ -35,13 +35,15 @@
             @foreach($review->comments as $comment)
                 <div class="comment">
                     <p>{{ $comment->content }}</p>
-                    <form action="{{ route('comment.delete', ['watchName' => $review->watch_name, 'commentId' => $comment->id]) }}" method="post" class="delete-form">
-                        @csrf
-                        @method('DELETE')
-                        @auth
-                            <button id ="delete-comment" type="submit">Delete</button>
-                        @endauth
-                    </form>
+                    @auth
+                        @if(auth()->user()->id === $comment->user_id)
+                            <form action="{{ route('comment.delete', ['watchName' => $review->watch_name, 'commentId' => $comment->id]) }}" method="post" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button id="delete-comment" type="submit">Delete</button>
+                            </form>
+                        @endif
+                    @endauth
                 </div>
             @endforeach
             <form action="{{ route('comment.create', ['watchName' => $review->watch_name]) }}" method="post">

@@ -126,6 +126,7 @@ class ReviewController extends Controller
         ]);
         $review->comments()->create([
             'content' => $request->input('content'),
+            'user_id' => $request->user()->id,
         ]);
         return redirect()->route('review', ['watchName' => $watchName])->with('success', 'Comment added successfully!');
     }
