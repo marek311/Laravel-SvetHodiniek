@@ -114,6 +114,7 @@ Route::delete('/dictionary/delete/{id}',
 
 //TODO: praca so subormi
 //TODO: ak sa nieco nepodari pridat zobrazit preco
+//TODO: validacia stranok
 
 //TODO: ajax volanie - mozno fetch recenzii ako aj gallery postov?
 
