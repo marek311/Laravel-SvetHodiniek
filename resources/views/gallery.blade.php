@@ -44,7 +44,6 @@
 <div class="container-h-center">
     <button id="loadMoreButton">Load More</button>
 </div>
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let offset = 0;
@@ -55,14 +54,12 @@
             offset += 2;
             fetchImages(offset);
         });
-
         function createEditDeleteLinks(postId) {
             return `
                 <a href="/gallery/${postId}/edit" class="edit-link">Edit</a>
                 <a href="/gallery/delete/${postId}/confirm" class="delete-link">Delete</a>
             `;
         }
-
         function fetchImages(offset) {
             fetch("/gallery/fetchMore?count=" + (offset === 0 ? initialLoadCount : 2) + "&offset=" + offset)
                 .then(response => response.json())
@@ -87,12 +84,8 @@
                 })
                 .catch(error => console.error('Error fetching images:', error));
         }
-
         fetchImages(offset);
     });
 </script>
-
-
-
 </body>
 </html>
