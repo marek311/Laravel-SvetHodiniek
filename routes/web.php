@@ -109,12 +109,17 @@ Route::delete('/dictionary/delete/{id}',
 //-----------------------------------------
 
 //TODO: autor gallery postu
+
 //TODO: role uzivatelov
 
 //TODO: praca so subormi
+
 //TODO: ak sa nieco nepodari pridat zobrazit preco
+
 //TODO: validacia stranok
 
-//TODO: ajax volanie - mozno fetch recenzii ako aj gallery postov?
+//TODO: cast do ktorej je nutne sa prihlasit
 
-//TODO: sql injection ochrana
+//TODO: AJAX volanie - mozno fetch recenzii ako aj gallery postov?
+
+//TODO: SQL injection ochrana
