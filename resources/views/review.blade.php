@@ -34,6 +34,9 @@
             <h2>Comments:{{ count($review->comments) }}</h2>
             @foreach($review->comments as $comment)
                 <div class="comment">
+                    <div class="author-section">
+                        <p>Author: {{ $comment->user->name }}</p>
+                    </div>
                     <p>{{ $comment->content }}</p>
                     @auth
                         @if(auth()->user()->id === $comment->user_id)
