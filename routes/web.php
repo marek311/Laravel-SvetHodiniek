@@ -110,8 +110,11 @@ Route::delete('/dictionary/delete/{id}',
 
 //TODO: autor komentu
 //TODO: autor gallery postu
-//TODO: ajax volanie - mozno fetch recenzii ako aj gallery postov?
-//TODO: ak sa nieco nepodari pridat zobrazit preco
-//TODO: sql injection ochrana
 //TODO: role uzivatelov
+
 //TODO: praca so subormi
+//TODO: ak sa nieco nepodari pridat zobrazit preco
+
+//TODO: ajax volanie - mozno fetch recenzii ako aj gallery postov?
+
+//TODO: sql injection ochrana
