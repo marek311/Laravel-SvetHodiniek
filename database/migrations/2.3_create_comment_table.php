@@ -12,8 +12,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('review_id');
             $table->text('content');
-            $table->timestamps();
-
             $table->foreign('review_id')->references('id')->on('review')->onDelete('cascade');
         });
     }
