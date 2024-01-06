@@ -108,7 +108,6 @@ Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
 
-//TODO: autor komentu
 //TODO: autor gallery postu
 //TODO: role uzivatelov
 
