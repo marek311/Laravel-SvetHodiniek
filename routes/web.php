@@ -108,20 +108,16 @@ Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
 
-//TODO: autor gallery postu
-
 //TODO: role uzivatelov
+//TODO: -> admin moze pridavat, editovat a mazat vsetko
+//TODO: -> gallery post, review, pojem->pojem iba admin
 
-//TODO: watchmaking term pridat a mazat iba admin
-
-//TODO: praca so subormi
-
-//TODO: ak sa nieco nepodari pridat zobrazit preco
-
-//TODO: validacia stranok
-
-//TODO: cast do ktorej je nutne sa prihlasit
+//TODO: praca so subormi=zmena db, model, controller, formulare
 
 //TODO: AJAX volanie - mozno fetch recenzii ako aj gallery postov
 
 //TODO: SQL injection ochrana
+
+//TODO: ak sa nieco nepodari pridat zobrazit preco
+
+//TODO: validacia stranok
