@@ -108,11 +108,9 @@ Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
 
-//TODO: admin create update delete
-//TODO:-> gallery post
-//TODO:-> review ->comment
+//TODO: admin delete->review ->comment
 
-//TODO: praca so subormi=zmena db, model, controller, formulare
+//TODO: praca so subormi => zmena db, model, controller, formulare
 
 //TODO: AJAX volanie - mozno fetch editovanie termov on place
 
@@ -120,4 +118,4 @@ Route::delete('/dictionary/delete/{id}',
 
 //TODO: ak sa nieco nepodari pridat zobrazit preco
 
-//TODO: validacia stranok
+//TODO: validacia stranok, prejst a skontrolovat kod
