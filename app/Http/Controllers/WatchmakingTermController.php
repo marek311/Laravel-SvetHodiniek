@@ -17,6 +17,9 @@ class WatchmakingTermController extends Controller
     }
     public function create(Request $request)
     {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
         $this->validate($request, [
         'term' => 'required',
         'explanation' => 'required',
@@ -30,11 +33,20 @@ class WatchmakingTermController extends Controller
     public function deleteForm($id)
     {
         $watchmakingTerm = WatchmakingTerm::findOrFail($id);
+        if (!$watchmakingTerm) {
+            abort(404);
+        }
         return view('delete_watchmakingTerm', compact('watchmakingTerm'));
     }
     public function delete($id)
     {
         $watchmakingTerm = WatchmakingTerm::findOrFail($id);
+        if (!$watchmakingTerm) {
+            abort(404);
+        }
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
         $watchmakingTerm->delete();
         return redirect('/dictionary')->with('success', 'Watchmaking term deleted successfully!');
     }
