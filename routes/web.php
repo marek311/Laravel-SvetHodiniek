@@ -108,12 +108,13 @@ Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
 
-//TODO: -> admin moze pridavat, editovat a mazat vsetko
-//TODO: -> gallery post, review, pojem->pojem iba admin
+//TODO: admin create update delete
+//TODO:-> gallery post
+//TODO:-> review ->comment
 
 //TODO: praca so subormi=zmena db, model, controller, formulare
 
-//TODO: AJAX volanie - mozno fetch recenzii ako aj gallery postov
+//TODO: AJAX volanie - mozno fetch editovanie termov on place
 
 //TODO: SQL injection ochrana
 
