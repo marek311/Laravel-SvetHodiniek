@@ -48,7 +48,7 @@ class GalleryPostController extends Controller
         if (!$galleryPost) {
             abort(404);
         }
-        if ($request->user()->id !== $galleryPost->user_id) {
+        if ($request->user()->id !== $galleryPost->user_id && $request->user()->role !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
         $galleryPost->update([
@@ -71,7 +71,7 @@ class GalleryPostController extends Controller
         if (!$galleryPost) {
             abort(404);
         }
-        if (auth()->user()->id !== $galleryPost->user_id) {
+        if (auth()->user()->id !== $galleryPost->user_id && auth()->user()->role !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
         $galleryPost->delete();
