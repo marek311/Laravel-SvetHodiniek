@@ -9,9 +9,11 @@
 </head>
 <body>
 @auth
-    <a href="{{ route('watchmakingTerm.createForm') }}" class="add-button">
-        <button>Create Watchmaking Term</button>
-    </a>
+    @if(auth()->user()->role === 'admin')
+        <a href="{{ route('watchmakingTerm.createForm') }}" class="add-button">
+            <button>Create Watchmaking Term</button>
+        </a>
+    @endif
 @endauth
 <a href="{{ route('home') }}" class="back-link">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="gold" class="back-arrow" width="5%">
@@ -37,9 +39,11 @@
                     <p>{{ $term->explanation }}</p>
                 </div>
                 @auth
-                    <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
-                        <button class="delete-button" style="display: none;">Delete</button>
-                    </a>
+                    @if(auth()->user()->role === 'admin')
+                        <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
+                            <button class="delete-button" style="display: none;">Delete</button>
+                        </a>
+                   @endif
                 @endauth
             </div>
         </li>

@@ -108,7 +108,6 @@ Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
 
-//TODO: role uzivatelov
 //TODO: -> admin moze pridavat, editovat a mazat vsetko
 //TODO: -> gallery post, review, pojem->pojem iba admin
 
