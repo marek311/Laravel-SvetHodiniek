@@ -32,7 +32,7 @@
                 <p>{{ $post->name }}</p>
                 <img class="infinite-scroll-trigger" src="{{ $post->picture }}" alt="{{ $post->name }}" width="300">
                 @auth
-                    @if(auth()->user()->id === $post->user_id)
+                    @if(auth()->user()->id === $post->user_id || auth()->user()->role === 'admin')
                         <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
                         <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
                     @endif
@@ -48,6 +48,7 @@
     <button id="loadMoreButton">Load More</button>
 </div>
 <script>
+    const userRole = "{{ auth()->check() ? auth()->user()->role : 'guest' }}";
     document.addEventListener("DOMContentLoaded", function () {
         let offset = 0;
         let initialLoadCount = 2;
@@ -57,14 +58,14 @@
             offset += 2;
             fetchImages(offset);
         });
-        function createEditDeleteLinks(postId, userId) {
+        function createEditDeleteLinks(postId, userId, userRole) {
             const isAuthor = userId === {{ auth()->check() ? auth()->user()->id : 'null' }};
-
-            if (isAuthor) {
+            const isAdmin = userRole === 'admin';
+            if (isAuthor || isAdmin) {
                 return `
-                    <a href="/gallery/${postId}/edit" class="edit-link">Edit</a>
-                    <a href="/gallery/delete/${postId}/confirm" class="delete-link">Delete</a>
-                `;
+            <a href="/gallery/${postId}/edit" class="edit-link">Edit</a>
+            <a href="/gallery/delete/${postId}/confirm" class="delete-link">Delete</a>
+            `;
             }
             return '';
         }
@@ -82,7 +83,7 @@
                         imageWrapper.innerHTML = `
                             <p>${post.name}</p>
                             <img class="infinite-scroll-trigger" src="${post.picture}" alt="${post.name}" width="300">
-                            ${createEditDeleteLinks(post.id, post.user_id)}
+                            ${createEditDeleteLinks(post.id, post.user_id, userRole)}
                         `;
                         imageContainer.appendChild(imageWrapper);
                     });
