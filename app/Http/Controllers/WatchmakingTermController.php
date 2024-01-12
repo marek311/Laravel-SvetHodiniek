@@ -65,6 +65,9 @@ class WatchmakingTermController extends Controller
         $this->validate($request, [
             'explanation' => 'required',
         ]);
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
         $term->update([
             'explanation' => $request->explanation,
         ]);

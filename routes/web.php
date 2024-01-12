@@ -118,7 +118,7 @@ Route::post('/dictionary/updateTerm/{id}',
 
 //TODO: praca so subormi => zmena db, model, controller, formulare
 
-//TODO: AJAX volanie - mozno fetch editovanie termov on place
+//TODO: AJAX volanie
 
 //TODO: SQL injection ochrana
 
