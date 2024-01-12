@@ -39,7 +39,7 @@
                     </div>
                     <p>{{ $comment->content }}</p>
                     @auth
-                        @if(auth()->user()->id === $comment->user_id)
+                        @if(auth()->user()->id === $comment->user_id || auth()->user()->role === 'admin')
                             <form action="{{ route('comment.delete', ['watchName' => $review->watch_name, 'commentId' => $comment->id]) }}" method="post" class="delete-form">
                                 @csrf
                                 @method('DELETE')
@@ -49,12 +49,14 @@
                     @endauth
                 </div>
             @endforeach
-            <form action="{{ route('comment.create', ['watchName' => $review->watch_name]) }}" method="post">
-                @csrf
-                <label for="comment_content">Add a Comment:</label>
-                <textarea name="content" id="comment_content" rows="3" required></textarea>
-                <button type="submit">Add Comment</button>
-            </form>
+            @auth
+                <form action="{{ route('comment.create', ['watchName' => $review->watch_name]) }}" method="post">
+                    @csrf
+                    <label for="comment_content">Add a Comment:</label>
+                    <textarea name="content" id="comment_content" rows="3" required></textarea>
+                    <button type="submit">Add Comment</button>
+                </form>
+            @endauth
         </div>
 </div>
 </body>
