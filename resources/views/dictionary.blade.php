@@ -35,11 +35,9 @@
             <label for="{{ 'word' . $term->id }}" class="arrow-label">{{ $term->term }}</label>
             <input type="checkbox" id="{{ 'word' . $term->id }}" class="arrow-checkbox">
             <div class="term-details" data-term-id="{{ $term->id }}">
-
                 <button class="edit-term-button" data-term-id="{{ $term->id }}">Edit</button>
                 <textarea class="editable-explanation" style="display: none;">{{ $term->explanation }}</textarea>
                 <button class="update-term-button" style="display: none;">Update</button>
-
                 <div class="explanation">
                     <p>{{ $term->explanation }}</p>
                 </div>
@@ -72,36 +70,27 @@
                 });
             });
         });
-
         const editButtons = document.querySelectorAll('.edit-term-button');
         const updateButtons = document.querySelectorAll('.update-term-button');
         const editableExplanations = document.querySelectorAll('.editable-explanation');
-
         editButtons.forEach((button, index) => {
             button.addEventListener('click', function () {
                 const termId = this.getAttribute('data-term-id');
-
-                // Fetch term details via Ajax
                 $.ajax({
                     url: `/dictionary/get-term-details/${termId}`,
                     type: 'GET',
                     success: function (response) {
-                        // Show editable fields and hide non-editable ones
                         editableExplanations[index].style.display = 'block';
                         editableExplanations[index].value = response.explanation;
-
                         updateButtons[index].style.display = 'block';
                     }
                 });
             });
         });
-
         updateButtons.forEach((button, index) => {
             button.addEventListener('click', function () {
                 const termId = editButtons[index].getAttribute('data-term-id');
                 const updatedExplanation = editableExplanations[index].value;
-
-                // Update explanation via Ajax
                 $.ajax({
                     url: `/dictionary/update-term/${termId}`,
                     type: 'POST',
@@ -110,11 +99,8 @@
                         _token: '{{ csrf_token() }}',
                     },
                     success: function (response) {
-                        // Hide edit fields and display updated explanation
                         editableExplanations[index].style.display = 'none';
                         updateButtons[index].style.display = 'none';
-
-                        // Fetch and update term details dynamically
                         fetchAndUpdateTermDetails(termId, index);
                     },
                     error: function (xhr, status, error) {
@@ -123,24 +109,17 @@
                 });
             });
         });
-
         function fetchAndUpdateTermDetails(termId, index) {
-            // Fetch term details via Ajax
             $.ajax({
                 url: `/dictionary/get-term-details/${termId}`,
                 type: 'GET',
                 success: function (response) {
-                    // Display the updated term and explanation dynamically
                     const termDetailsContainer = termDetailsList[index];
-
                     if (termDetailsContainer) {
                         const explanationElement = termDetailsContainer.querySelector('.explanation');
                         const paragraphElement = explanationElement.querySelector('p');
-
                         if (explanationElement && paragraphElement) {
                             paragraphElement.innerText = response.explanation;
-
-                            // Show the updated term details container
                             termDetailsContainer.style.display = 'block';
                         } else {
                             console.error('Error: explanationElement or paragraphElement not found.');
@@ -151,10 +130,7 @@
                 }
             });
         }
-
     });
-
-
 </script>
 </body>
 </html>
