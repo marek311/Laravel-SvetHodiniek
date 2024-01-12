@@ -108,7 +108,7 @@ Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
 
-//TODO: admin delete->review ->comment
+//TODO: admin delete->review
 
 //TODO: praca so subormi => zmena db, model, controller, formulare
 
