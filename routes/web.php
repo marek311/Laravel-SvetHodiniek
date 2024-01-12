@@ -120,7 +120,7 @@ Route::post('/dictionary/updateTerm/{id}',
 
 //TODO: ak sa nieco nepodari vo formulari zobrazit stare udaje vo formulari
 
-//TODO: kontrola typov nielen required
+//TODO: kontrola typov a platnych udajov nielen required
 
 //TODO: admin delete->review
 
