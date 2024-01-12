@@ -108,6 +108,14 @@ Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 //-----------------------------------------
 
+Route::get('/dictionary/get-term-details/{id}',
+    [WatchmakingTermController::class, 'getTermDetails']);
+
+Route::post('/dictionary/update-term/{id}',
+    [WatchmakingTermController::class, 'updateTerm']);
+
+
+
 //TODO: admin delete->review
 
 //TODO: praca so subormi => zmena db, model, controller, formulare

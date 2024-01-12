@@ -50,4 +50,30 @@ class WatchmakingTermController extends Controller
         $watchmakingTerm->delete();
         return redirect('/dictionary')->with('success', 'Watchmaking term deleted successfully!');
     }
+    public function getTermDetails($id)
+    {
+        $term = WatchmakingTerm::findOrFail($id);
+        return response()->json([
+            'term' => $term->term,
+            'explanation' => $term->explanation,
+        ]);
+    }
+
+    public function updateTerm(Request $request, $id)
+    {
+        $term = WatchmakingTerm::findOrFail($id);
+
+        // Validate and update the term data
+        $this->validate($request, [
+            'term' => 'required',
+            'explanation' => 'required',
+        ]);
+
+        $term->update([
+            'term' => $request->term,
+            'explanation' => $request->explanation,
+        ]);
+
+        return response()->json(['success' => true]);
+    }
 }
