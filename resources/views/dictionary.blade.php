@@ -45,13 +45,13 @@
                 <div class="explanation">
                     <p>{{ $term->explanation }}</p>
                 </div>
-                    @auth
-                        @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
-                                <button class="delete-button" style="display: none;">Delete</button>
-                            </a>
-                        @endif
-                    @endauth
+                @auth
+                    @if(auth()->user()->role === 'admin')
+                        <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
+                            <button class="delete-button" style="display: none;">Delete</button>
+                        </a>
+                    @endif
+                @endauth
             </div>
         </li>
     @endforeach
