@@ -120,6 +120,8 @@ Route::post('/dictionary/updateTerm/{id}',
 
 //TODO: ak sa nieco nepodari vo formulari zobrazit stare udaje vo formulari
 
+//TODO: kontrola typov nielen required
+
 //TODO: admin delete->review
 
 //TODO: SQL injection ochrana
