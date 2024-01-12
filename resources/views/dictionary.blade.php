@@ -103,6 +103,7 @@
                         editableExplanations[index].style.display = 'block';
                         editableExplanations[index].value = response.explanation;
                         updateButtons[index].style.display = 'block';
+                        editButtons[index].style.display = 'none';
                     }
                 });
             });
@@ -122,6 +123,10 @@
                         editableExplanations[index].style.display = 'none';
                         updateButtons[index].style.display = 'none';
                         fetchAndUpdateTermDetails(termId, index);
+                        const editButton = termDetailsList[index].querySelector('.edit-term-button');
+                        if (editButton) {
+                            editButton.style.display = 'block';
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);
