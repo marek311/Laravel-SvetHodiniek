@@ -118,6 +118,8 @@ Route::post('/dictionary/updateTerm/{id}',
 
 //TODO: ak sa nieco nepodari pridat zobrazit preco
 
+//TODO: ak sa nieco nepodari vo formulari zobrazit stare udaje vo formulari
+
 //TODO: admin delete->review
 
 //TODO: SQL injection ochrana
