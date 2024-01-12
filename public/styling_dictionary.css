@@ -47,8 +47,6 @@ p {
     display: inline-block;
     cursor: pointer;
 }
-
-
 .edit-term-button,
 .update-term-button,
 .editable-explanation {
@@ -59,24 +57,12 @@ p {
     margin-top: 10px;
     cursor: pointer;
 }
-
 .editable-explanation {
     width: 100%;
     margin-top: 10px;
     padding: 5px;
     box-sizing: border-box;
 }
-
-.delete-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-
 .term-details {
     border: 2px solid white;
     border-radius: 5px;

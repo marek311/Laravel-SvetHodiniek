@@ -114,14 +114,12 @@ Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
 
-//TODO: admin delete->review
-
 //TODO: praca so subormi => zmena db, model, controller, formulare
 
-//TODO: AJAX volanie
+//TODO: ak sa nieco nepodari pridat zobrazit preco
+
+//TODO: admin delete->review
 
 //TODO: SQL injection ochrana
-
-//TODO: ak sa nieco nepodari pridat zobrazit preco
 
 //TODO: validacia stranok, prejst a skontrolovat kod
