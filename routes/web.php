@@ -107,10 +107,10 @@ Route::get('/dictionary/delete/{id}/confirm',
 Route::delete('/dictionary/delete/{id}',
     [WatchmakingTermController::class, 'delete'])->name('watchmakingTerm.delete');
 
-Route::get('/dictionary/get-term-details/{id}',
+Route::get('/dictionary/termDetails/{id}',
     [WatchmakingTermController::class, 'getTermDetails']);
 
-Route::post('/dictionary/update-term/{id}',
+Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
 

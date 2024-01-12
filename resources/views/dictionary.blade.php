@@ -77,7 +77,7 @@
             button.addEventListener('click', function () {
                 const termId = this.getAttribute('data-term-id');
                 $.ajax({
-                    url: `/dictionary/get-term-details/${termId}`,
+                    url: `/dictionary/termDetails/${termId}`,
                     type: 'GET',
                     success: function (response) {
                         editableExplanations[index].style.display = 'block';
@@ -92,7 +92,7 @@
                 const termId = editButtons[index].getAttribute('data-term-id');
                 const updatedExplanation = editableExplanations[index].value;
                 $.ajax({
-                    url: `/dictionary/update-term/${termId}`,
+                    url: `/dictionary/updateTerm/${termId}`,
                     type: 'POST',
                     data: {
                         explanation: updatedExplanation,
@@ -111,7 +111,7 @@
         });
         function fetchAndUpdateTermDetails(termId, index) {
             $.ajax({
-                url: `/dictionary/get-term-details/${termId}`,
+                url: `/dictionary/termDetails/${termId}`,
                 type: 'GET',
                 success: function (response) {
                     const termDetailsContainer = termDetailsList[index];
