@@ -35,25 +35,30 @@
             <label for="{{ 'word' . $term->id }}" class="arrow-label">{{ $term->term }}</label>
             <input type="checkbox" id="{{ 'word' . $term->id }}" class="arrow-checkbox">
             <div class="term-details" data-term-id="{{ $term->id }}">
-                <button class="edit-term-button" data-term-id="{{ $term->id }}">Edit</button>
+                @auth
+                    @if(auth()->user()->role === 'admin')
+                        <button class="edit-term-button" data-term-id="{{ $term->id }}">Edit</button>
+                        <button class="update-term-button" style="display: none;">Update</button>
+                    @endif
+                @endauth
                 <textarea class="editable-explanation" style="display: none;">{{ $term->explanation }}</textarea>
-                <button class="update-term-button" style="display: none;">Update</button>
                 <div class="explanation">
                     <p>{{ $term->explanation }}</p>
                 </div>
-                @auth
-                    @if(auth()->user()->role === 'admin')
-                        <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
-                            <button class="delete-button" style="display: none;">Delete</button>
-                        </a>
-                    @endif
-                @endauth
+                    @auth
+                        @if(auth()->user()->role === 'admin')
+                            <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
+                                <button class="delete-button" style="display: none;">Delete</button>
+                            </a>
+                        @endif
+                    @endauth
             </div>
         </li>
     @endforeach
 </ul>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
+    var userRoleAdmin = '{{ auth()->check() && auth()->user()->role === 'admin'}}';
     document.addEventListener("DOMContentLoaded", function () {
         const checkboxes = document.querySelectorAll('.arrow-checkbox');
         const termDetailsList = document.querySelectorAll('.term-details');
@@ -61,11 +66,18 @@
             checkbox.addEventListener('change', function () {
                 termDetailsList.forEach((termDetails, i) => {
                     if (index === i) {
-                        termDetails.querySelector('.explanation').style.display = this.checked ? 'block' : 'none';
-                        termDetails.querySelector('.delete-button').style.display = this.checked ? 'block' : 'none';
+                        const explanationElement = termDetails.querySelector('.explanation');
+                        explanationElement.style.display = this.checked ? 'block' : 'none';
+                        const deleteButton = termDetails.querySelector('.delete-button');
+                        if (deleteButton) {
+                            deleteButton.style.display = this.checked && userRoleAdmin ? 'block' : 'none';
+                        }
                     } else {
                         termDetails.querySelector('.explanation').style.display = 'none';
-                        termDetails.querySelector('.delete-button').style.display = 'none';
+                        const deleteButton = termDetails.querySelector('.delete-button');
+                        if (deleteButton) {
+                            deleteButton.style.display = 'none';
+                        }
                     }
                 });
             });
