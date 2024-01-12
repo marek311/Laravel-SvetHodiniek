@@ -35,16 +35,16 @@
             <label for="{{ 'word' . $term->id }}" class="arrow-label">{{ $term->term }}</label>
             <input type="checkbox" id="{{ 'word' . $term->id }}" class="arrow-checkbox">
             <div class="term-details" data-term-id="{{ $term->id }}">
+                <div class="explanation">
+                    <p>{{ $term->explanation }}</p>
+                </div>
                 @auth
                     @if(auth()->user()->role === 'admin')
-                        <button class="edit-term-button" data-term-id="{{ $term->id }}">Edit</button>
+                        <button class="edit-term-button" style="display: none;" data-term-id="{{ $term->id }}">Edit</button>
                         <button class="update-term-button" style="display: none;">Update</button>
                     @endif
                 @endauth
                 <textarea class="editable-explanation" style="display: none;">{{ $term->explanation }}</textarea>
-                <div class="explanation">
-                    <p>{{ $term->explanation }}</p>
-                </div>
                 @auth
                     @if(auth()->user()->role === 'admin')
                         <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
@@ -69,14 +69,22 @@
                         const explanationElement = termDetails.querySelector('.explanation');
                         explanationElement.style.display = this.checked ? 'block' : 'none';
                         const deleteButton = termDetails.querySelector('.delete-button');
+                        const editButton = termDetails.querySelector('.edit-term-button');
                         if (deleteButton) {
                             deleteButton.style.display = this.checked && userRoleAdmin ? 'block' : 'none';
+                        }
+                        if (editButton) {
+                            editButton.style.display = this.checked && userRoleAdmin ? 'block' : 'none';
                         }
                     } else {
                         termDetails.querySelector('.explanation').style.display = 'none';
                         const deleteButton = termDetails.querySelector('.delete-button');
+                        const editButton = termDetails.querySelector('.edit-term-button');
                         if (deleteButton) {
                             deleteButton.style.display = 'none';
+                        }
+                        if (editButton) {
+                            editButton.style.display = 'none';
                         }
                     }
                 });
