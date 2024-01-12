@@ -62,18 +62,12 @@ class WatchmakingTermController extends Controller
     public function updateTerm(Request $request, $id)
     {
         $term = WatchmakingTerm::findOrFail($id);
-
-        // Validate and update the term data
         $this->validate($request, [
-            'term' => 'required',
             'explanation' => 'required',
         ]);
-
         $term->update([
-            'term' => $request->term,
             'explanation' => $request->explanation,
         ]);
-
         return response()->json(['success' => true]);
     }
 }

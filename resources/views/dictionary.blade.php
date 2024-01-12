@@ -37,7 +37,6 @@
             <div class="term-details" data-term-id="{{ $term->id }}">
 
                 <button class="edit-term-button" data-term-id="{{ $term->id }}">Edit</button>
-                <input type="text" class="editable-term" value="{{ $term->term }}" style="display: none;">
                 <textarea class="editable-explanation" style="display: none;">{{ $term->explanation }}</textarea>
                 <button class="update-term-button" style="display: none;">Update</button>
 
@@ -49,7 +48,7 @@
                         <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
                             <button class="delete-button" style="display: none;">Delete</button>
                         </a>
-                   @endif
+                    @endif
                 @endauth
             </div>
         </li>
@@ -57,7 +56,7 @@
 </ul>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
         const checkboxes = document.querySelectorAll('.arrow-checkbox');
         const termDetailsList = document.querySelectorAll('.term-details');
         checkboxes.forEach((checkbox, index) => {
@@ -76,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const editButtons = document.querySelectorAll('.edit-term-button');
         const updateButtons = document.querySelectorAll('.update-term-button');
-        const editableTerms = document.querySelectorAll('.editable-term');
         const editableExplanations = document.querySelectorAll('.editable-explanation');
 
         editButtons.forEach((button, index) => {
@@ -89,9 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     type: 'GET',
                     success: function (response) {
                         // Show editable fields and hide non-editable ones
-                        editableTerms[index].style.display = 'block';
-                        editableTerms[index].value = response.term;
-
                         editableExplanations[index].style.display = 'block';
                         editableExplanations[index].value = response.explanation;
 
@@ -101,68 +96,63 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-    updateButtons.forEach((button, index) => {
-        button.addEventListener('click', function () {
-            const termId = editButtons[index].getAttribute('data-term-id');
-            const updatedTerm = editableTerms[index].value;
-            const updatedExplanation = editableExplanations[index].value;
+        updateButtons.forEach((button, index) => {
+            button.addEventListener('click', function () {
+                const termId = editButtons[index].getAttribute('data-term-id');
+                const updatedExplanation = editableExplanations[index].value;
 
-            // Update term details via Ajax
-            $.ajax({
-                url: `/dictionary/update-term/${termId}`,
-                type: 'POST',
-                data: {
-                    term: updatedTerm,
-                    explanation: updatedExplanation,
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function (response) {
-                    // Hide edit fields and display updated texts
-                    editableTerms[index].style.display = 'none';
-                    editableExplanations[index].style.display = 'none';
-                    updateButtons[index].style.display = 'none';
+                // Update explanation via Ajax
+                $.ajax({
+                    url: `/dictionary/update-term/${termId}`,
+                    type: 'POST',
+                    data: {
+                        explanation: updatedExplanation,
+                        _token: '{{ csrf_token() }}',
+                    },
+                    success: function (response) {
+                        // Hide edit fields and display updated explanation
+                        editableExplanations[index].style.display = 'none';
+                        updateButtons[index].style.display = 'none';
 
-                    // Fetch updated term details dynamically
-                    fetchAndUpdateTermDetails(termId, index);
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
+                        // Fetch and update term details dynamically
+                        fetchAndUpdateTermDetails(termId, index);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
             });
         });
-    });
 
-    function fetchAndUpdateTermDetails(termId, index) {
-        // Fetch term details via Ajax
-        $.ajax({
-            url: `/dictionary/get-term-details/${termId}`,
-            type: 'GET',
-            success: function (response) {
-                // Display the updated term and explanation dynamically
-                const termDetailsContainer = termDetailsList[index];
+        function fetchAndUpdateTermDetails(termId, index) {
+            // Fetch term details via Ajax
+            $.ajax({
+                url: `/dictionary/get-term-details/${termId}`,
+                type: 'GET',
+                success: function (response) {
+                    // Display the updated term and explanation dynamically
+                    const termDetailsContainer = termDetailsList[index];
 
-                if (termDetailsContainer) {
-                    const explanationElement = termDetailsContainer.querySelector('.explanation');
-                    const paragraphElement = explanationElement.querySelector('p');
+                    if (termDetailsContainer) {
+                        const explanationElement = termDetailsContainer.querySelector('.explanation');
+                        const paragraphElement = explanationElement.querySelector('p');
 
-                    if (explanationElement && paragraphElement) {
-                        paragraphElement.innerText = response.explanation;
+                        if (explanationElement && paragraphElement) {
+                            paragraphElement.innerText = response.explanation;
 
-                        // Show the updated term details container
-                        termDetailsContainer.style.display = 'block';
+                            // Show the updated term details container
+                            termDetailsContainer.style.display = 'block';
+                        } else {
+                            console.error('Error: explanationElement or paragraphElement not found.');
+                        }
                     } else {
-                        console.error('Error: explanationElement or paragraphElement not found.');
+                        console.error('Error: termDetailsContainer not found.');
                     }
-                } else {
-                    console.error('Error: termDetailsContainer not found.');
                 }
-            }
-        });
-    }
+            });
+        }
 
-
-
-});
+    });
 
 
 </script>
