@@ -133,10 +133,10 @@ class ReviewController extends Controller
             abort(404);
         }
         $request->validate([
-            'content' => 'required',
+            'content' => 'required|string',
         ]);
         $review->comments()->create([
-            'content' => $request->input('content'),
+            'content' => htmlspecialchars($request->input('content'), ENT_QUOTES, 'UTF-8'),
             'user_id' => $request->user()->id,
         ]);
         return redirect()->route('review', ['watchName' => $watchName])->with('success', 'Comment added successfully!');
