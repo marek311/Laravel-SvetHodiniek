@@ -30,13 +30,14 @@ class ReviewController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|string|max:255',
             'content' => 'array',
-            'content.*' => 'required',
+            'content.*' => 'required|string',
             'pictureFile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        $watchName = htmlspecialchars($request->input('title'), ENT_QUOTES, 'UTF-8');
         $review = new Review();
-        $review->watch_name = $request->input('title');
+        $review->watch_name = $watchName;
         $review->user_id = $request->user()->id;
         if ($request->hasFile('pictureFile')) {
             $file = $request->file('pictureFile');
@@ -47,13 +48,14 @@ class ReviewController extends Controller
         $review->save();
         if ($request->has('content') && is_array($request->input('content'))) {
             foreach ($request->input('content') as $index => $content) {
+                $paragraphText = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
                 $review->paragraphs()->create([
-                    'paragraph_text' => $content,
+                    'paragraph_text' => $paragraphText,
                     'id' => $index + 1,
                 ]);
             }
         }
-        return redirect()->route('review', ['watchName' => $request->input('title')]);
+        return redirect()->route('review', ['watchName' => $watchName]);
     }
     public function updateForm($watchName)
     {
@@ -69,8 +71,8 @@ class ReviewController extends Controller
         }
         $cleanWatchName = strtolower(str_replace('_', ' ', $watchName));
         $request->validate([
-            'title' => 'required|max:255',
-            'content.*' => 'required',
+            'title' => 'required|string|max:255',
+            'content.*' => 'required|string',
             'pictureFile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $review = Review::with('paragraphs')->where('watch_name', $cleanWatchName)->first();
@@ -92,9 +94,10 @@ class ReviewController extends Controller
         $paragraphsToDelete = array_diff($existingParagraphs, $requestedParagraphs);
         $review->paragraphs()->whereIn('id', $paragraphsToDelete)->delete();
         foreach ($request->input('content') as $index => $content) {
+            $sanitizedContent = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
             $review->paragraphs()->updateOrCreate(
                 ['id' => $index + 1],
-                ['paragraph_text' => $content]
+                ['paragraph_text' => $sanitizedContent]
             );
         }
         return redirect()->route('review', ['watchName' => $request->input('title')]);
