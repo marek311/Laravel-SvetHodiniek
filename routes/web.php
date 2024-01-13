@@ -114,6 +114,11 @@ Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
 
+Route::get('/images/{id}',
+    [ReviewController::class, 'show'])->name('image.show');
+
+
+
 //TODO: praca so subormi => zmena db, model, controller, formulare
 
 //TODO: ak sa nieco nepodari pridat zobrazit preco

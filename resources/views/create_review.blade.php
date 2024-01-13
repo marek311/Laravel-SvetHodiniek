@@ -16,12 +16,12 @@
     <h1>Create Review</h1>
 </div>
 <div class="form-container">
-    <form action="{{ route('review.create') }}" method="post" id="createReviewForm">
+    <form action="{{ route('review.create') }}" method="post" id="createReviewForm" enctype="multipart/form-data">
         @csrf
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
-        <label for="picture">Picture URL:</label>
-        <input type="url" id="picture" name="picture" nullable>
+        <label for="pictureFile">Picture File:</label>
+        <input type="file" id="pictureFile" name="pictureFile" accept="image/*" required>
         <div id="paragraphsContainer">
             <label for="content">Paragraph:</label>
             <div class="paragraphInputContainer">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 class ReviewController extends Controller
 {
@@ -33,13 +35,27 @@ class ReviewController extends Controller
             'title' => 'required|max:255',
             'content' => 'array',
             'content.*' => 'required',
-            'picture' => 'nullable|url',
+            'pictureFile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $review = Review::create([
-            'watch_name' => $request->input('title'),
-            'picture' => $request->input('picture'),
-            'user_id' => $request->user()->id,
-        ]);
+
+        try {
+            $review = new Review();
+            $review->watch_name = $request->input('title');
+            $review->user_id = $request->user()->id;
+            $review->picture = 'https://www.ihodinarstvo.sk/soubory/1b7d948f53917992d907ca7c5d02496daf8ede16.jpg';
+            if ($request->hasFile('pictureFile')) {
+                $file = $request->file('pictureFile');
+                $review->pictureFile = file_get_contents($file->getRealPath());
+            } else {
+                $review->pictureFile = null;
+            }
+
+            $review->save();
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+
         if ($request->has('content') && is_array($request->input('content'))) {
             foreach ($request->input('content') as $index => $content) {
                 $review->paragraphs()->create([
@@ -147,4 +163,14 @@ class ReviewController extends Controller
         $comment->delete();
         return redirect()->route('review', ['watchName' => $watchName])->with('success', 'Comment deleted successfully!');
     }
+
+    public function show($id)
+    {
+        $image = Review::find($id);
+        if (!$image || !$image->pictureFile) {
+            abort(404);
+        }
+        return response($image->pictureFile)->header('Content-Type', 'image/jpeg');
+    }
+
 }
