@@ -117,12 +117,10 @@ Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
 
-//TODO: Povinne: kontrola typov a SQL injection ochrana v ReviewController
+//TODO: validacia stranok
 
-//TODO: Povinne: validacia stranok
+//TODO: admin delete->review
 
-//TODO: Nepovinne: admin delete->review
+//TODO: ak sa nieco nepodari pridat zobrazenie preco
 
-//TODO: Nepovinne: ak sa nieco nepodari pridat zobrazit preco
-
-//TODO: Nepovinne: ak sa nieco nepodari vo formulari zobrazit stare udaje vo formulari
+//TODO: ak sa nieco nepodari vo formulari zobrazit stare udaje vo formulari
