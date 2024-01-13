@@ -20,14 +20,19 @@ class GalleryPostController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string',
             'picture' => 'required|url',
         ]);
-        GalleryPost::create([
+        $validatedUrl = filter_var($request->picture, FILTER_VALIDATE_URL);
+        if (!$validatedUrl) {
+            return redirect('/gallery')->withErrors(['Invalid URL provided.']);
+        }
+        $galleryPost = new GalleryPost([
             'name' => $request->name,
-            'picture' => $request->picture,
-            'user_id' => $request->user()->id,
+            'picture' => $validatedUrl,
         ]);
+        $galleryPost->user()->associate($request->user());
+        $galleryPost->save();
         return redirect('/gallery')->with('success', 'Gallery post added successfully!');
     }
     public function updateForm($id)
@@ -41,9 +46,13 @@ class GalleryPostController extends Controller
             abort(404);
         }
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|string',
             'picture' => 'required|url',
         ]);
+        $validatedUrl = filter_var($request->picture, FILTER_VALIDATE_URL);
+        if (!$validatedUrl) {
+            return redirect('/gallery')->withErrors(['Invalid URL provided.']);
+        }
         $galleryPost = GalleryPost::findOrFail($id);
         if (!$galleryPost) {
             abort(404);
@@ -53,7 +62,7 @@ class GalleryPostController extends Controller
         }
         $galleryPost->update([
             'name' => $request->name,
-            'picture' => $request->picture,
+            'picture' => $validatedUrl,
         ]);
         return redirect('/gallery')->with('success', 'Gallery post updated successfully!');
     }
