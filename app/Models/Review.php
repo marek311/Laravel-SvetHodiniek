@@ -9,7 +9,7 @@ class Review extends Model
     public $timestamps = false;
     protected $table = 'review';
 
-    protected $fillable = ['watch_name','picture', 'pictureFile', 'user_id'];
+    protected $fillable = ['watch_name', 'pictureFile', 'user_id'];
 
     public function paragraphs()
     {

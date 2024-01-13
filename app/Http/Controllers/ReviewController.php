@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
 
 class ReviewController extends Controller
 {
@@ -42,7 +40,6 @@ class ReviewController extends Controller
             $review = new Review();
             $review->watch_name = $request->input('title');
             $review->user_id = $request->user()->id;
-            $review->picture = 'https://www.ihodinarstvo.sk/soubory/1b7d948f53917992d907ca7c5d02496daf8ede16.jpg';
             if ($request->hasFile('pictureFile')) {
                 $file = $request->file('pictureFile');
                 $review->pictureFile = file_get_contents($file->getRealPath());
@@ -172,5 +169,4 @@ class ReviewController extends Controller
         }
         return response($image->pictureFile)->header('Content-Type', 'image/jpeg');
     }
-
 }

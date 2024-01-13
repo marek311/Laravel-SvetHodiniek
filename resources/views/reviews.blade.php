@@ -29,7 +29,7 @@
         <div class="box">
             @php $cleanWatchName = strtolower(str_replace(' ', '_', $review['watch_name'])); @endphp
             <a class="nav-link" href="{{ url("/reviews/{$cleanWatchName}") }}">
-                <img src="{{ $review['picture'] }}" alt="img_watch">
+                <img src="{{ route('image.show', ['id' => $review->id]) }}" alt="{{ $review->watch_name }}">
             </a>
             <div class="review-content">
                 <a class="header-link" href="{{ url("/reviews/{$cleanWatchName}") }}">

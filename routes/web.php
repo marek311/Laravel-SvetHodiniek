@@ -63,6 +63,9 @@ Route::post('/reviews/{watchName}/comments',
 
 Route::delete('/reviews/{watchName}/comments/{commentId}',
     [ReviewController::class, 'deleteComment'])->name('comment.delete');
+
+Route::get('/images/{id}',
+    [ReviewController::class, 'show'])->name('image.show');
 //-----------------------------------------
 
 //-----------------------------------------
@@ -113,11 +116,6 @@ Route::get('/dictionary/termDetails/{id}',
 Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
-
-Route::get('/images/{id}',
-    [ReviewController::class, 'show'])->name('image.show');
-
-
 
 //TODO: praca so subormi => zmena db, model, controller, formulare
 

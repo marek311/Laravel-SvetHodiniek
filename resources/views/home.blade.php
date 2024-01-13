@@ -54,7 +54,7 @@
         @foreach($reviews as $key => $review)
             <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                 <div class="image-wrapper">
-                    <img src="{{ $review->picture }}" class="d-block w-100" alt="{{ $review->watch_name }}">
+                    <img src="{{ route('image.show', ['id' => $review->id]) }}" alt="{{ $review->watch_name }}">
                 </div>
                 <div class="carousel-caption">
                     <h3>
