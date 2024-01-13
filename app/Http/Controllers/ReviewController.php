@@ -155,7 +155,6 @@ class ReviewController extends Controller
         $comment->delete();
         return redirect()->route('review', ['watchName' => $watchName])->with('success', 'Comment deleted successfully!');
     }
-
     public function show($id)
     {
         $image = Review::find($id);

@@ -117,8 +117,6 @@ Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
 
-//TODO: praca so subormi => zmena db, model, controller, formulare
-
 //TODO: ak sa nieco nepodari pridat zobrazit preco
 
 //TODO: ak sa nieco nepodari vo formulari zobrazit stare udaje vo formulari
