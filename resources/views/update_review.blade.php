@@ -13,7 +13,7 @@
     </svg>
 </a>
 <h1>Edit Review</h1>
-<form method="post" action="{{ route('review.update', ['watch_name' => $review->watch_name]) }}">
+<form method="post" action="{{ route('review.update', ['watch_name' => $review->watch_name]) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <label for="title">Watch Name:</label>
@@ -28,8 +28,8 @@
         @endforeach
     </div>
     <button type="button" onclick="addParagraph()">Add Paragraph</button>
-    <label for="picture">Picture URL:</label>
-    <input type="text" id="picture" name="picture" value="{{ $review->picture }}">
+    <label for="pictureFile">Picture File:</label>
+    <input type="file" id="pictureFile" name="pictureFile" accept="image/*" required>
     <button type="submit">Update Review</button>
 </form>
 <script>

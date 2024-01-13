@@ -35,24 +35,16 @@ class ReviewController extends Controller
             'content.*' => 'required',
             'pictureFile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        try {
-            $review = new Review();
-            $review->watch_name = $request->input('title');
-            $review->user_id = $request->user()->id;
-            if ($request->hasFile('pictureFile')) {
-                $file = $request->file('pictureFile');
-                $review->pictureFile = file_get_contents($file->getRealPath());
-            } else {
-                $review->pictureFile = null;
-            }
-
-            $review->save();
-
-        } catch (\Exception $e) {
-            dd($e->getMessage());
+        $review = new Review();
+        $review->watch_name = $request->input('title');
+        $review->user_id = $request->user()->id;
+        if ($request->hasFile('pictureFile')) {
+            $file = $request->file('pictureFile');
+            $review->pictureFile = file_get_contents($file->getRealPath());
+        } else {
+            $review->pictureFile = null;
         }
-
+        $review->save();
         if ($request->has('content') && is_array($request->input('content'))) {
             foreach ($request->input('content') as $index => $content) {
                 $review->paragraphs()->create([
@@ -79,7 +71,7 @@ class ReviewController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content.*' => 'required',
-            'picture' => 'nullable|url',
+            'pictureFile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $review = Review::with('paragraphs')->where('watch_name', $cleanWatchName)->first();
         if (!$review) {
@@ -90,8 +82,11 @@ class ReviewController extends Controller
         }
         $review->update([
             'watch_name' => $request->input('title'),
-            'picture' => $request->input('picture'),
         ]);
+        if ($request->hasFile('pictureFile')) {
+            $file = $request->file('pictureFile');
+            $review->update(['pictureFile' => file_get_contents($file->getRealPath())]);
+        }
         $existingParagraphs = $review->paragraphs->pluck('id')->toArray();
         $requestedParagraphs = array_keys($request->input('content', []));
         $paragraphsToDelete = array_diff($existingParagraphs, $requestedParagraphs);
