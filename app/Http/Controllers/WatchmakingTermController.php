@@ -21,14 +21,16 @@ class WatchmakingTermController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $this->validate($request, [
-        'term' => 'required',
-        'explanation' => 'required',
+            'term' => 'required|string',
+            'explanation' => 'required|string',
         ]);
+        $term = htmlspecialchars($request->term, ENT_QUOTES, 'UTF-8');
+        $explanation = htmlspecialchars($request->explanation, ENT_QUOTES, 'UTF-8');
         WatchmakingTerm::create([
-            'term' => $request->term,
-            'explanation' => $request->explanation,
+            'term' => $term,
+            'explanation' => $explanation,
         ]);
-        return redirect('/dictionary')->with('success', 'added');
+        return redirect('/dictionary')->with('success', 'Term added successfully!');
     }
     public function deleteForm($id)
     {
@@ -58,18 +60,18 @@ class WatchmakingTermController extends Controller
             'explanation' => $term->explanation,
         ]);
     }
-
     public function updateTerm(Request $request, $id)
     {
         $term = WatchmakingTerm::findOrFail($id);
         $this->validate($request, [
-            'explanation' => 'required',
+            'explanation' => 'required|string',
         ]);
         if (auth()->user()->role !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
+        $explanation = htmlspecialchars($request->explanation, ENT_QUOTES, 'UTF-8');
         $term->update([
-            'explanation' => $request->explanation,
+            'explanation' => $explanation,
         ]);
         return response()->json(['success' => true]);
     }
