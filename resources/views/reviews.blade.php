@@ -21,9 +21,26 @@
 <div class="container-h-center">
     <h1>Recenzie</h1>
 </div>
-<div class="container-h-center">
-    <h1>{{ count($reviews) }}</h1>
-</div>
+    @if ( count($reviews) == 0)
+        <div class="container-h-center">
+            <h2>Na stránke v súčastnosti nenájdete recenzie</h2>
+        </div>
+    @endif
+    @if ( count($reviews) == 1)
+        <div class="container-h-center">
+            <h2>Na stránke v súčastnosti nájdete {{ count($reviews) }} recenziu</h2>
+        </div>
+    @endif
+    @if ( count($reviews) == 2 || count($reviews) == 3 || count($reviews) == 4)
+    <div class="container-h-center">
+        <h2>Na stránke v súčastnosti nájdete {{ count($reviews) }} recenzie</h2>
+    </div>
+    @endif
+    @if ( count($reviews) > 4)
+        <div class="container-h-center">
+            <h2>Na stránke v súčastnosti nájdete {{ count($reviews) }} recenzii</h2>
+        </div>
+   @endif
 <div class="reviews">
     @foreach ($reviews as $review)
         <div class="box">
