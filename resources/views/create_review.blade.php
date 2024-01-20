@@ -22,6 +22,7 @@
         <input type="text" id="title" name="title" value="{{ old('title') }}" required>
         <label for="pictureFile">Picture File:</label>
         <input type="file" id="pictureFile" name="pictureFile" accept="image/*" required>
+        <span id="file-name-placeholder"></span>
         <div id="paragraphsContainer">
             <label for="content">Paragraph:</label>
             @if(old('content'))
@@ -43,6 +44,13 @@
     </form>
 </div>
 <script>
+    document.getElementById('pictureFile').addEventListener('change', handleFileSelect);
+    function handleFileSelect(event) {
+        const fileNamePlaceholder = document.getElementById('file-name-placeholder');
+        const selectedFile = event.target.files[0];
+        if (selectedFile) fileNamePlaceholder.textContent = selectedFile.name;
+        else fileNamePlaceholder.textContent = '';
+    }
     function addParagraph() {
         const container = document.getElementById('paragraphsContainer');
         const newContainer = document.createElement('div');

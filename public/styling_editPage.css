@@ -42,3 +42,11 @@ button:hover {
 textarea {
     resize: none;
 }
+#pictureFile {
+    margin-bottom: 10px;
+    z-index: 1;
+}
+#file-name-placeholder {
+    display: block;
+    color: black;
+}
