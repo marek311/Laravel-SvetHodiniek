@@ -79,7 +79,7 @@ class ReviewController extends Controller
         if (!$review) {
             abort(404);
         }
-        if ($request->user()->id !== $review->user_id) {
+        if ($request->user()->id !== $review->user_id && auth()->user()->role !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
         $review->update([
@@ -118,7 +118,7 @@ class ReviewController extends Controller
         if (!$review) {
             abort(404);
         }
-        if ($request->user()->id !== $review->user_id) {
+        if ($request->user()->id !== $review->user_id && auth()->user()->role !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
         $review->paragraphs()->delete();
