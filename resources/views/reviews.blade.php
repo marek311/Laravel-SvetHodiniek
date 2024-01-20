@@ -53,7 +53,7 @@
                     <p>{{ $review['watch_name'] }}</p>
                 </a>
                 @auth
-                    @if(auth()->user()->id == $review->user_id)
+                    @if(auth()->user()->id == $review->user_id || auth()->user()->role === 'admin')
                         <a class="edit-link" href="{{ route('review.updateForm',['watch_name' => $review->watch_name]) }}">
                             <button>Edit Review</button>
                         </a>
