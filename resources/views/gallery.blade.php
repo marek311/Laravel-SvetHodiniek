@@ -22,7 +22,7 @@
     <h1>Galéria</h1>
 </div>
 <div class="container-h-center">
-    <h1>{{ count($galleryPosts) }}</h1>
+    <h2>Na tejto stránke nájdete presne {{ count($galleryPosts) }} zaujímavých hodiniek na inšpiráciu</h2>
 </div>
 <div class="image-container">
     @php $count = 0; @endphp
