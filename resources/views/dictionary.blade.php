@@ -26,9 +26,26 @@
 <div class="container-h-center">
     <h2>Zopár pojmov zo slovníka nadšencov do hodiniek</h2>
 </div>
-<div class="container-h-center">
-    <h2>V súšastnosti u nás nájdete {{ count($watchmakingTerms) }} pojmov s vysvetlením</h2>
-</div>
+@if ( count($watchmakingTerms) == 0)
+    <div class="container-h-center">
+        <h2>V súčastnosti u nás nenájdete pojmy s vysvetlením</h2>
+    </div>
+@endif
+@if ( count($watchmakingTerms) == 1)
+    <div class="container-h-center">
+        <h2>V súšastnosti u nás nájdete {{ count($watchmakingTerms) }} pojem s vysvetlením</h2>
+    </div>
+@endif
+@if ( count($watchmakingTerms) == 2 || count($watchmakingTerms) == 3 || count($watchmakingTerms) == 4)
+    <div class="container-h-center">
+        <h2>V súšastnosti u nás nájdete {{ count($watchmakingTerms) }} pojmy s vysvetlením</h2>
+    </div>
+@endif
+@if ( count($watchmakingTerms) > 4)
+    <div class="container-h-center">
+        <h2>V súšastnosti u nás nájdete {{ count($watchmakingTerms) }} pojmov s vysvetlením</h2>
+    </div>
+@endif
 <ul>
     @foreach($watchmakingTerms as $term)
         <li>
