@@ -21,9 +21,21 @@
 <div class="container-h-center">
     <h1>Galéria</h1>
 </div>
-<div class="container-h-center">
-    <h2>Na tejto stránke nájdete presne {{ count($galleryPosts) }} zaujímavých hodiniek na inšpiráciu</h2>
-</div>
+@if ( count($galleryPosts) == 0)
+    <div class="container-h-center">
+        <h2>Na tejto stránke nenájdete zaujímavé hodinky na inšpiráciu</h2>
+    </div>
+@endif
+@if ( 1 <= count($galleryPosts)  && count($galleryPosts) <= 4)
+    <div class="container-h-center">
+        <h2>Na tejto stránke nájdete presne {{ count($galleryPosts) }} zaujímavé hodinky na inšpiráciu</h2>
+    </div>
+@endif
+@if ( count($galleryPosts) > 4)
+    <div class="container-h-center">
+        <h2>Na tejto stránke nájdete presne {{ count($galleryPosts) }} zaujímavých hodiniek na inšpiráciu</h2>
+    </div>
+@endif
 <div class="image-container">
     @php $count = 0; @endphp
     @foreach ($galleryPosts as $post)
