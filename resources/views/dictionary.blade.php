@@ -24,10 +24,10 @@
     <h1>Slovník hodinkára</h1>
 </div>
 <div class="container-h-center">
-    <h2>Zopár pojmov zo slovníka nadšencov do hodiniek:</h2>
+    <h2>Zopár pojmov zo slovníka nadšencov do hodiniek</h2>
 </div>
 <div class="container-h-center">
-    <h1>{{ count($watchmakingTerms) }}</h1>
+    <h2>V súšastnosti u nás nájdete {{ count($watchmakingTerms) }} pojmov s vysvetlením</h2>
 </div>
 <ul>
     @foreach($watchmakingTerms as $term)
