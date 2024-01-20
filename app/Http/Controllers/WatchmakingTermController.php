@@ -73,6 +73,6 @@ class WatchmakingTermController extends Controller
         $term->update([
             'explanation' => $explanation,
         ]);
-        return response()->json(['success' => true]);
+        return response()->json(['message' => 'Watchmaking term updated successfully']);
     }
 }
