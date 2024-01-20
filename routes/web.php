@@ -117,6 +117,4 @@ Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
 
-//TODO: admin delete->review
-
 //TODO: ak sa nieco nepodari pridat zobrazenie preco
