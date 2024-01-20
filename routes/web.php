@@ -117,4 +117,6 @@ Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
 
+//TODO: scripty do public/js a vo view ich include/volat
+
 //TODO: ak sa nieco nepodari pridat zobrazenie preco
