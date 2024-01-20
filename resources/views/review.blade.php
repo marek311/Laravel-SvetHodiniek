@@ -19,10 +19,12 @@
 <div class="container-h-center">
     <img src="{{ route('image.show', ['id' => $review->id]) }}" alt="{{ $review->watch_name }}" style="width: 30%;">
 </div>
-<div class="review-container">
+<div class="container-h-center">
     <div class="author-section">
         <p>Author: {{ $review->user->name }}</p>
     </div>
+</div>
+<div class="review-container">
     @foreach($review->paragraphs as $paragraph)
         <div class="review-section">
             <p>

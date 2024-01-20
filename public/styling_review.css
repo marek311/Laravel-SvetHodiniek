@@ -53,3 +53,21 @@ p {
     background-color: gold;
     color: darkgreen;
 }
+.author-section {
+    background-color: darkgreen;
+    margin: 20px;
+    border: 3px solid darkgreen;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    max-width: 25%;
+}
+.author-section p {
+    color: white;
+    background-color: darkgreen;
+    border: 3px solid darkgreen;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    transition: transform 0.3s;
+}
