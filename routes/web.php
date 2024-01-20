@@ -117,10 +117,6 @@ Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
 
-//TODO: validacia stranok
-
 //TODO: admin delete->review
 
 //TODO: ak sa nieco nepodari pridat zobrazenie preco
-
-//TODO: ak sa nieco nepodari vo formulari zobrazit stare udaje vo formulari

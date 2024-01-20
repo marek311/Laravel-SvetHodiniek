@@ -72,7 +72,7 @@ class GalleryPostController extends Controller
         if (!$galleryPost) {
             abort(404);
         }
-        return view('delete_galeryPost', compact('galleryPost'));
+        return view('delete_galleryPost', compact('galleryPost'));
     }
     public function delete($id)
     {
