@@ -19,9 +19,9 @@
     <form action="{{ route('watchmakingTerm.create') }}" method="post">
         @csrf
         <label for="term">Term:</label>
-        <input type="text" id="term" name="term" required>
+        <input type="text" id="term" name="term" value="{{ old('term') }}" required>
         <label for="explanation">Explanation:</label>
-        <textarea id="explanation" name="explanation" rows="4" required></textarea>
+        <textarea id="explanation" name="explanation" rows="4" required>{{ old('explanation') }}</textarea>
         <button type="submit">Add Watchmaking Term</button>
     </form>
 </div>

@@ -19,9 +19,9 @@
     <form action="{{ route('gallery.create') }}" method="post">
         @csrf
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" value="{{ old('name') }}" required>
         <label for="picture">Picture URL:</label>
-        <input type="url" id="picture" name="picture" required>
+        <input type="url" id="picture" name="picture" value="{{ old('picture') }}" required>
         <button type="submit">Add Gallery Post</button>
     </form>
 </div>

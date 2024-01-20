@@ -19,15 +19,24 @@
     <form action="{{ route('review.create') }}" method="post" id="createReviewForm" enctype="multipart/form-data">
         @csrf
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required>
+        <input type="text" id="title" name="title" value="{{ old('title') }}" required>
         <label for="pictureFile">Picture File:</label>
         <input type="file" id="pictureFile" name="pictureFile" accept="image/*" required>
         <div id="paragraphsContainer">
             <label for="content">Paragraph:</label>
-            <div class="paragraphInputContainer">
-                <input type="text" class="paragraphInput" name="content[]" required>
-                <button type="button" onclick="deleteParagraph(this)">Delete Paragraph</button>
-            </div>
+            @if(old('content'))
+                @foreach(old('content') as $paragraph)
+                    <div class="paragraphInputContainer">
+                        <input type="text" class="paragraphInput" name="content[]" value="{{ $paragraph }}" required>
+                        <button type="button" onclick="deleteParagraph(this)">Delete Paragraph</button>
+                    </div>
+                @endforeach
+            @else
+                <div class="paragraphInputContainer">
+                    <input type="text" class="paragraphInput" name="content[]" required>
+                    <button type="button" onclick="deleteParagraph(this)">Delete Paragraph</button>
+                </div>
+            @endif
         </div>
         <button type="button" onclick="addParagraph()">Add Paragraph</button>
         <button type="submit">Create Review</button>
