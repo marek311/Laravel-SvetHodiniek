@@ -19,7 +19,7 @@
     <form action="{{ route('gallery.create') }}" method="post">
         @csrf
         <label for="name">Meno hodiniek:</label>
-        <input type="text" id="name" name="name" value="{{ old('name') }}" pattern="[A-Za-z0-9\s]+" title="Prosím, zadajte platné meno (písmená, číslice a medzery)" required>
+        <input type="text" id="name" name="name" value="{{ old('name') }}" pattern="[A-Za-z0-9\s]+" title="Prosím, zadajte platné meno, iba písmená, číslice a medzery" required>
         <label for="picture">URL adresa:</label>
         <input type="url" id="picture" name="picture" value="{{ old('picture') }}" title="Prosím, zadajte platnú URL adresu" required>
         <button type="submit">Pridať nový post</button>

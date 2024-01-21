@@ -22,7 +22,7 @@
     <form action="{{ route('review.create') }}" method="post" id="createReviewForm" enctype="multipart/form-data">
         @csrf
         <label for="title">Názov:</label>
-        <input type="text" id="title" name="title" value="{{ old('title') }}" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný názov (písmená, číslice, medzery a niektoré interpunkčné znamienka)" required>
+        <input type="text" id="title" name="title" value="{{ old('title') }}" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný názov, iba písmená, číslice, medzery a .,!?" required>
         <label for="pictureFile">Súbor obrázku:</label>
         <input type="file" id="pictureFile" name="pictureFile" accept="image/*" required>
         <span id="file-name-placeholder"></span>
@@ -31,13 +31,13 @@
             @if(old('content'))
                 @foreach(old('content') as $paragraph)
                     <div class="paragraphInputContainer">
-                        <input type="text" class="paragraphInput" name="content[]" value="{{ $paragraph }}" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný paragraf (písmená, číslice, medzery a niektoré interpunkčné znamienka)" required>
+                        <input type="text" class="paragraphInput" name="content[]" value="{{ $paragraph }}" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný názov, iba písmená, číslice, medzery a .,!?" required>
                         <button type="button" onclick="deleteParagraph(this)">Vymaž Paragraf</button>
                     </div>
                 @endforeach
             @else
                 <div class="paragraphInputContainer">
-                    <input type="text" class="paragraphInput" name="content[]" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný paragraf (písmená, číslice, medzery a niektoré interpunkčné znamienka)" required>
+                    <input type="text" class="paragraphInput" name="content[]" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný názov, iba písmená, číslice, medzery a .,!?" required>
                     <button type="button" onclick="deleteParagraph(this)">Vymaž paragraf</button>
                 </div>
             @endif
