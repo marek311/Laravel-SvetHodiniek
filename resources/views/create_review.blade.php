@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Create Review</title>
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
+    <script src="{{ asset('scriptAddAndDeleteParagraph.js') }}"></script>
 </head>
 <body>
 <a href="{{ route('reviews') }}" class="back-link">
@@ -50,32 +51,6 @@
         const selectedFile = event.target.files[0];
         if (selectedFile) fileNamePlaceholder.textContent = selectedFile.name;
         else fileNamePlaceholder.textContent = '';
-    }
-    function addParagraph() {
-        const container = document.getElementById('paragraphsContainer');
-        const newContainer = document.createElement('div');
-        newContainer.classList.add('paragraphInputContainer');
-        const newInput = document.createElement('input');
-        newInput.type = 'text';
-        newInput.classList.add('paragraphInput');
-        newInput.name = 'content[]';
-        newInput.required = true;
-        const deleteButton = document.createElement('button');
-        deleteButton.type = 'button';
-        deleteButton.textContent = 'Delete Paragraph';
-        deleteButton.onclick = function () {
-            deleteParagraph(this);
-        };
-        newContainer.appendChild(document.createElement('br'));
-        newContainer.appendChild(document.createTextNode('Paragraph: '));
-        newContainer.appendChild(newInput);
-        newContainer.appendChild(deleteButton);
-        container.appendChild(newContainer);
-    }
-    function deleteParagraph(button) {
-        const container = button.parentNode;
-        const paragraphsContainer = document.getElementById('paragraphsContainer');
-        paragraphsContainer.removeChild(container);
     }
 </script>
 </body>
