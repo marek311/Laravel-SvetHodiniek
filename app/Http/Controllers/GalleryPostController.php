@@ -20,7 +20,7 @@ class GalleryPostController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string',
+            'name' => 'required|string|regex:/^[A-Za-z0-9\s]+$/',
             'picture' => 'required|url',
         ]);
         $validatedUrl = filter_var($request->picture, FILTER_VALIDATE_URL);
