@@ -76,8 +76,14 @@ class ReviewController extends Controller
         }
         $cleanWatchName = strtolower(str_replace('_', ' ', $watchName));
         $request->validate([
-            'title' => 'required|string|max:255',
-            'content.*' => 'required|string',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[A-Za-z0-9\s.,!?]+$/',
+            ],
+            'content' => 'array',
+            'content.*' => 'required|string|regex:/^[A-Za-z0-9\s.,!?]+$/',
             'pictureFile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $review = Review::with('paragraphs')->where('watch_name', $cleanWatchName)->first();
