@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Gallery Post</title>
+    <title>Pridanie nového postu</title>
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
 </head>
 <body>
@@ -13,16 +13,16 @@
     </svg>
 </a>
 <div class="container-h-center">
-    <h1>Add Gallery Post</h1>
+    <h1>Pridanie nového postu</h1>
 </div>
 <div class="form-container">
     <form action="{{ route('gallery.create') }}" method="post">
         @csrf
-        <label for="name">Name:</label>
+        <label for="name">Meno hodiniek:</label>
         <input type="text" id="name" name="name" value="{{ old('name') }}" required>
-        <label for="picture">Picture URL:</label>
+        <label for="picture">URL adresa:</label>
         <input type="url" id="picture" name="picture" value="{{ old('picture') }}" required>
-        <button type="submit">Add Gallery Post</button>
+        <button type="submit">Pridať nový post</button>
     </form>
 </div>
 </body>
