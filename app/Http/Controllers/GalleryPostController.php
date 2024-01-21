@@ -46,7 +46,7 @@ class GalleryPostController extends Controller
             abort(404);
         }
         $this->validate($request, [
-            'name' => 'required|string',
+            'name' => 'required|string|regex:/^[A-Za-z0-9\s]+$/',
             'picture' => 'required|url',
         ]);
         $validatedUrl = filter_var($request->picture, FILTER_VALIDATE_URL);
