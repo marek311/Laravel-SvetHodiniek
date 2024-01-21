@@ -12,15 +12,15 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
     </svg>
 </a>
- <h1>Uprav post</h1>
-    <form action="{{ route('gallery.update', ['id' => $galleryPost->id]) }}" method="post">
-        @csrf
-        @method('PUT')
-        <label for="update_name">Meno hodiniek:</label>
-        <input type="text" id="update_name" name="name" value="{{ $galleryPost->name }}" required>
-        <label for="update_picture">URL adresa:</label>
-        <input type="url" id="update_picture" name="picture" value="{{ $galleryPost->picture }}" required>
-        <button type="submit">Uprav post</button>
-    </form>
+<h1>Uprav post</h1>
+<form action="{{ route('gallery.update', ['id' => $galleryPost->id]) }}" method="post">
+    @csrf
+    @method('PUT')
+    <label for="update_name">Meno hodiniek:</label>
+    <input type="text" id="update_name" name="name" value="{{ $galleryPost->name }}" pattern="[A-Za-z0-9\s]+" title="Prosím, zadajte platné meno, iba písmená, číslice a medzery" required>
+    <label for="update_picture">URL adresa:</label>
+    <input type="url" id="update_picture" name="picture" value="{{ $galleryPost->picture }}" title="Prosím, zadajte platnú URL adresu" required>
+    <button type="submit">Uprav post</button>
+</form>
 </body>
 </html>
