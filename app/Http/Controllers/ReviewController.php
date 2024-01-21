@@ -144,7 +144,7 @@ class ReviewController extends Controller
             abort(404);
         }
         $request->validate([
-            'content' => 'required|string',
+            'content' => 'required|string|regex:/^[A-Za-z0-9\s.,!?()\'"-]+$/',
         ]);
         $review->comments()->create([
             'content' => htmlspecialchars($request->input('content'), ENT_QUOTES, 'UTF-8'),
