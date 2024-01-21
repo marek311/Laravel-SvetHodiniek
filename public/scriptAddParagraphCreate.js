@@ -9,7 +9,7 @@ function addParagraph() {
     newInput.required = true;
     const deleteButton = document.createElement('button');
     deleteButton.type = 'button';
-    deleteButton.textContent = 'Delete Paragraph';
+    deleteButton.textContent = 'Vymaž Paragraf';
     deleteButton.onclick = function () {
         deleteParagraph(this);
     };

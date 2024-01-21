@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create Review</title>
+    <title>Pridanie novej recenzie</title>
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
     <script src="{{ asset('scriptAddParagraphCreate.js') }}"></script>
     <script src="{{ asset('scriptDeleteParagraph.js') }}"></script>
@@ -16,34 +16,34 @@
     </svg>
 </a>
 <div class="container-h-center">
-    <h1>Create Review</h1>
+    <h1>Pridanie novej recenzie</h1>
 </div>
 <div class="form-container">
     <form action="{{ route('review.create') }}" method="post" id="createReviewForm" enctype="multipart/form-data">
         @csrf
-        <label for="title">Title:</label>
+        <label for="title">Názov:</label>
         <input type="text" id="title" name="title" value="{{ old('title') }}" required>
-        <label for="pictureFile">Picture File:</label>
+        <label for="pictureFile">Súbor obrázku:</label>
         <input type="file" id="pictureFile" name="pictureFile" accept="image/*" required>
         <span id="file-name-placeholder"></span>
         <div id="paragraphsContainer">
-            <label for="content">Paragraph:</label>
+            <label for="content">Paragraf:</label>
             @if(old('content'))
                 @foreach(old('content') as $paragraph)
                     <div class="paragraphInputContainer">
                         <input type="text" class="paragraphInput" name="content[]" value="{{ $paragraph }}" required>
-                        <button type="button" onclick="deleteParagraph(this)">Delete Paragraph</button>
+                        <button type="button" onclick="deleteParagraph(this)">Vymaž Paragraf</button>
                     </div>
                 @endforeach
             @else
                 <div class="paragraphInputContainer">
                     <input type="text" class="paragraphInput" name="content[]" required>
-                    <button type="button" onclick="deleteParagraph(this)">Delete Paragraph</button>
+                    <button type="button" onclick="deleteParagraph(this)">Vymaž Paragraf</button>
                 </div>
             @endif
         </div>
-        <button type="button" onclick="addParagraph()">Add Paragraph</button>
-        <button type="submit">Create Review</button>
+        <button type="button" onclick="addParagraph()">Pridaj Paragraf</button>
+        <button type="submit">Vytvor recenziu</button>
     </form>
 </div>
 </body>
