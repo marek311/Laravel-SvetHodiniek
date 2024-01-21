@@ -55,7 +55,7 @@
                 <form action="{{ route('comment.create', ['watchName' => $review->watch_name]) }}" method="post">
                     @csrf
                     <label for="comment_content">Pridanie komentáru:</label>
-                    <textarea name="content" id="comment_content" rows="3" required pattern="[A-Za-z0-9\s]+" title="Prosím, zadajte platný obsah komentára, iba písmená, číslice a medzery"></textarea>
+                    <textarea name="content" id="comment_content" rows="3" required></textarea>
                     <button type="submit">Pridaj</button>
                 </form>
             @endauth
