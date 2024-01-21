@@ -21,8 +21,8 @@ class WatchmakingTermController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $this->validate($request, [
-            'term' => 'required|string',
-            'explanation' => 'required|string',
+            'term' => 'required|string|regex:/^[A-Za-z0-9\s]+$/',
+            'explanation' => 'required|string|regex:/^[A-Za-z0-9\s]+$/',
         ]);
         $term = htmlspecialchars($request->term, ENT_QUOTES, 'UTF-8');
         $explanation = htmlspecialchars($request->explanation, ENT_QUOTES, 'UTF-8');
