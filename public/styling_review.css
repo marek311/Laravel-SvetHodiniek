@@ -71,3 +71,13 @@ p {
     margin: 10px 0;
     transition: transform 0.3s;
 }
+.edit-link button, .delete-link button {
+    background-color: darkgoldenrod;
+    color: white;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px;
+}

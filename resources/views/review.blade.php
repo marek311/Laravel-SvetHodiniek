@@ -61,5 +61,17 @@
             @endauth
         </div>
 </div>
+<div class="buttons" style="text-align: center;">
+    @auth
+        @if(auth()->user()->id == $review->user_id || auth()->user()->role === 'admin')
+            <a class="edit-link" href="{{ route('review.updateForm',['watch_name' => $review->watch_name]) }}">
+                <button>Uprav recenziu</button>
+            </a>
+            <a class="delete-link" href="{{ route('review.deleteForm', ['watch_name' => $review->watch_name]) }}">
+                <button>Vymaž recenziu</button>
+            </a>
+        @endif
+    @endauth
+</div>
 </body>
 </html>
