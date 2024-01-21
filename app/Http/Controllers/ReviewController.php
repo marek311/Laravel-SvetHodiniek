@@ -30,9 +30,14 @@ class ReviewController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[A-Za-z0-9\s.,!?]+$/',
+            ],
             'content' => 'array',
-            'content.*' => 'required|string',
+            'content.*' => 'required|string|regex:/^[A-Za-z0-9\s.,!?]+$/',
             'pictureFile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $watchName = htmlspecialchars($request->input('title'), ENT_QUOTES, 'UTF-8');
