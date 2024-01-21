@@ -32,7 +32,7 @@
     </div>
     <button type="button" onclick="addParagraph()">Pridaj paragraf</button>
     <label for="pictureFile">Súbor obrázku:</label>
-    <input type="file" id="pictureFile" name="pictureFile" accept="image/*" required>
+    <input type="file" id="pictureFile" name="pictureFile" accept="image/*">
     <span id="file-name-placeholder"></span>
     <button type="submit">Uprav recenziu</button>
 </form>
