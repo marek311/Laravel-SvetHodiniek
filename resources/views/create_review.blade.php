@@ -31,13 +31,13 @@
             @if(old('content'))
                 @foreach(old('content') as $paragraph)
                     <div class="paragraphInputContainer">
-                        <input type="text" class="paragraphInput" name="content[]" value="{{ $paragraph }}" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný názov, iba písmená, číslice, medzery a .,!?" required>
+                        <input type="text" class="paragraphInput" name="content[]" value="{{ $paragraph }}" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný popis, iba písmená, číslice, medzery a .,!?" required>
                         <button type="button" onclick="deleteParagraph(this)">Vymaž Paragraf</button>
                     </div>
                 @endforeach
             @else
                 <div class="paragraphInputContainer">
-                    <input type="text" class="paragraphInput" name="content[]" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný názov, iba písmená, číslice, medzery a .,!?" required>
+                    <input type="text" class="paragraphInput" name="content[]" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný popis, iba písmená, číslice, medzery a .,!?" required>
                     <button type="button" onclick="deleteParagraph(this)">Vymaž paragraf</button>
                 </div>
             @endif
