@@ -15,6 +15,20 @@
 <div class="container-h-center">
     <h1>Vymazanie recenzie</h1>
 </div>
+<div class="container-h-center">
+    <h1>{{ $review->watch_name }}</h1>
+    <img src="{{ route('image.show', ['id' => $review->id]) }}" alt="{{ $review->watch_name }}" style="width: 30%;">
+    <div class="author-section">
+        <p>Autor: {{ $review->user->name }}</p>
+    </div>
+    @foreach($review->paragraphs as $paragraph)
+        <div class="review-section">
+            <p>
+                {{ $paragraph->paragraph_text }}
+            </p>
+        </div>
+    @endforeach
+</div>
 <div class="form-container">
     <form action="{{ route('review.delete', ['watch_name' => $review->watch_name]) }}" method="post">
         @csrf
