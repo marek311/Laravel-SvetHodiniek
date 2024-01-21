@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Gallery Post</title>
+    <title>Pridanie nového pojmu</title>
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
 </head>
 <body>
@@ -13,16 +13,16 @@
     </svg>
 </a>
 <div class="container-h-center">
-    <h1>Add Watchmaking term</h1>
+    <h1>Pridanie nového pojmu</h1>
 </div>
 <div class="form-container">
     <form action="{{ route('watchmakingTerm.create') }}" method="post">
         @csrf
-        <label for="term">Term:</label>
+        <label for="term">Pojem:</label>
         <input type="text" id="term" name="term" value="{{ old('term') }}" required>
-        <label for="explanation">Explanation:</label>
+        <label for="explanation">Vysvetlenie:</label>
         <textarea id="explanation" name="explanation" rows="4" required>{{ old('explanation') }}</textarea>
-        <button type="submit">Add Watchmaking Term</button>
+        <button type="submit">Pridať nový pojem</button>
     </form>
 </div>
 </body>
