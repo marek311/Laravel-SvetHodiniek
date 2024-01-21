@@ -11,7 +11,7 @@
 @auth
     @if(auth()->user()->role === 'admin')
         <a href="{{ route('watchmakingTerm.createForm') }}" class="add-button">
-            <button>Create Watchmaking Term</button>
+            <button>Vytvorenie nového pojmu</button>
         </a>
     @endif
 @endauth
@@ -57,15 +57,15 @@
                 </div>
                 @auth
                     @if(auth()->user()->role === 'admin')
-                        <button class="edit-term-button" style="display: none;" data-term-id="{{ $term->id }}">Edit</button>
-                        <button class="update-term-button" style="display: none;">Update</button>
+                        <button class="edit-term-button" style="display: none;" data-term-id="{{ $term->id }}">Uprav</button>
+                        <button class="update-term-button" style="display: none;">Potvrď</button>
                     @endif
                 @endauth
                 <textarea class="editable-explanation" style="display: none;">{{ $term->explanation }}</textarea>
                 @auth
                     @if(auth()->user()->role === 'admin')
                         <a href="{{ route('watchmakingTerm.deleteForm', ['id' => $term->id]) }}" class="add-button">
-                            <button class="delete-button" style="display: none;">Delete</button>
+                            <button class="delete-button" style="display: none;">Vymaž</button>
                         </a>
                     @endif
                 @endauth
