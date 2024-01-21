@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Create Review</title>
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
-    <script src="{{ asset('scriptAddAndDeleteParagraph.js') }}"></script>
+    <script src="{{ asset('scriptAddAndDeleteParagraphCreateReview.js') }}"></script>
 </head>
 <body>
 <a href="{{ route('reviews') }}" class="back-link">
