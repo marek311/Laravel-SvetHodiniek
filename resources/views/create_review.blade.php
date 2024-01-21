@@ -38,11 +38,11 @@
             @else
                 <div class="paragraphInputContainer">
                     <input type="text" class="paragraphInput" name="content[]" required>
-                    <button type="button" onclick="deleteParagraph(this)">Vymaž Paragraf</button>
+                    <button type="button" onclick="deleteParagraph(this)">Vymaž paragraf</button>
                 </div>
             @endif
         </div>
-        <button type="button" onclick="addParagraph()">Pridaj Paragraf</button>
+        <button type="button" onclick="addParagraph()">Pridaj paragraf</button>
         <button type="submit">Vytvor recenziu</button>
     </form>
 </div>
