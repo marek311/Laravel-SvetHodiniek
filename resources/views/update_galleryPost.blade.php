@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
-    <title>{{ $galleryPost->name }} edit review</title>
+    <title>Uprav post {{ $galleryPost->name }}</title>
 </head>
 <body>
 <a href="{{ route('gallery') }}" class="back-link">
@@ -12,15 +12,15 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
     </svg>
 </a>
- <h1>Update Gallery Post</h1>
+ <h1>Uprav post</h1>
     <form action="{{ route('gallery.update', ['id' => $galleryPost->id]) }}" method="post">
         @csrf
         @method('PUT')
-        <label for="update_name">Name:</label>
+        <label for="update_name">Meno hodiniek:</label>
         <input type="text" id="update_name" name="name" value="{{ $galleryPost->name }}" required>
-        <label for="update_picture">Picture URL:</label>
+        <label for="update_picture">URL adresa:</label>
         <input type="url" id="update_picture" name="picture" value="{{ $galleryPost->picture }}" required>
-        <button type="submit">Update Gallery Post</button>
+        <button type="submit">Uprav post</button>
     </form>
 </body>
 </html>
