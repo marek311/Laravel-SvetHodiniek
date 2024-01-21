@@ -10,7 +10,7 @@
 <body>
 @auth
     <a href="{{ route('review.createForm') }}" class="add-button">
-        <button>Create Review</button>
+        <button>Napíš recenziu</button>
     </a>
 @endauth
 <a href="{{ route('home') }}" class="back-link">
@@ -55,10 +55,10 @@
                 @auth
                     @if(auth()->user()->id == $review->user_id || auth()->user()->role === 'admin')
                         <a class="edit-link" href="{{ route('review.updateForm',['watch_name' => $review->watch_name]) }}">
-                            <button>Edit Review</button>
+                            <button>Uprav recenziu</button>
                         </a>
                         <a class="delete-link" href="{{ route('review.deleteForm', ['watch_name' => $review->watch_name]) }}">
-                            <button>Delete</button>
+                            <button>Vymaž recenziu</button>
                         </a>
                     @endif
                 @endauth
