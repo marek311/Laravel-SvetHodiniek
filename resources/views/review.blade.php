@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $review->watch_name }} Review</title>
+    <title>Recenzia {{ $review->watch_name }}</title>
     <link rel="stylesheet" href="{{ asset('styling_general.css') }}">
     <link rel="stylesheet" href="{{ asset('styling_review.css') }}">
 </head>
@@ -21,7 +21,7 @@
 </div>
 <div class="container-h-center">
     <div class="author-section">
-        <p>Author: {{ $review->user->name }}</p>
+        <p>Autor: {{ $review->user->name }}</p>
     </div>
 </div>
 <div class="review-container">
@@ -33,11 +33,11 @@
         </div>
     @endforeach
         <div class="comment-section">
-            <h2>Comments:{{ count($review->comments) }}</h2>
+            <h2>Komenty: {{ count($review->comments) }}</h2>
             @foreach($review->comments as $comment)
                 <div class="comment">
                     <div class="author-section">
-                        <p>Author: {{ $comment->user->name }}</p>
+                        <p>Autor: {{ $comment->user->name }}</p>
                     </div>
                     <p>{{ $comment->content }}</p>
                     @auth
@@ -45,7 +45,7 @@
                             <form action="{{ route('comment.delete', ['watchName' => $review->watch_name, 'commentId' => $comment->id]) }}" method="post" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button id="delete-comment" type="submit">Delete</button>
+                                <button id="delete-comment" type="submit">Vymazať</button>
                             </form>
                         @endif
                     @endauth
@@ -54,9 +54,9 @@
             @auth
                 <form action="{{ route('comment.create', ['watchName' => $review->watch_name]) }}" method="post">
                     @csrf
-                    <label for="comment_content">Add a Comment:</label>
+                    <label for="comment_content">Pridanie komentáru:</label>
                     <textarea name="content" id="comment_content" rows="3" required></textarea>
-                    <button type="submit">Add Comment</button>
+                    <button type="submit">Pridaj</button>
                 </form>
             @endauth
         </div>
