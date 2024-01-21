@@ -19,9 +19,3 @@ function addParagraph() {
     newContainer.appendChild(deleteButton);
     container.appendChild(newContainer);
 }
-
-function deleteParagraph(button) {
-    const container = button.parentNode;
-    const paragraphsContainer = document.getElementById('paragraphsContainer');
-    paragraphsContainer.removeChild(container);
-}
