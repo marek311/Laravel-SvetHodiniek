@@ -21,7 +21,7 @@
         <label for="term">Pojem:</label>
         <input type="text" id="term" name="term" value="{{ old('term') }}" pattern="[A-Za-z0-9\s]+" title="Prosím, zadajte platný pojem, iba písmená, číslice a medzery" required>
         <label for="explanation">Vysvetlenie:</label>
-        <textarea id="explanation" name="explanation" rows="4" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platné vysvetlenie, iba písmená, číslice, medzery a .,!?" required>{{ old('explanation') }}</textarea>
+        <textarea id="explanation" name="explanation" rows="4" required>{{ old('explanation') }}</textarea>
         <button type="submit">Pridať nový pojem</button>
     </form>
 </div>

@@ -25,7 +25,7 @@
         @foreach ($review->paragraphs as $index => $paragraph)
             <div class="paragraphInputContainer">
                 <label for="content{{ $index }}">Obsah recenzie:</label>
-                <textarea id="content{{ $index }}" name="content[{{ $index }}]" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný obsah, iba písmená, číslice, medzery a .,!?" required>{{ $paragraph->paragraph_text }}</textarea>
+                <textarea id="content{{ $index }}" name="content[{{ $index }}]" required>{{ $paragraph->paragraph_text }}</textarea>
                 <button type="button" onclick="deleteParagraph(this)">Vymaž paragraf</button>
             </div>
         @endforeach
