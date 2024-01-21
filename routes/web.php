@@ -7,7 +7,6 @@ use App\Http\Controllers\GalleryPostController;
 use App\Http\Controllers\WatchmakingTermController;
 
 Auth::routes();
-
 //-----------------------------------------
 Route::get('profile', function () {
     return view('profile');
@@ -28,8 +27,6 @@ Route::get('loginTab', function () {
 Route::get('registerTab', function () {
     return view('registerTab');
 });
-//-----------------------------------------
-
 //-----------------------------------------
 Route::get('/',
     [ReviewController::class, 'home'])->name('home');
@@ -67,8 +64,6 @@ Route::delete('/reviews/{watchName}/comments/{commentId}',
 Route::get('/images/{id}',
     [ReviewController::class, 'show'])->name('image.show');
 //-----------------------------------------
-
-//-----------------------------------------
 Route::get('gallery',
     [GalleryPostController::class, 'index'])->name('gallery');
 
@@ -93,8 +88,6 @@ Route::delete('/gallery/delete/{id}',
 Route::get('/gallery/fetchMore',
     [GalleryPostController::class, 'fetchMoreImages'])->name('gallery.fetchMore');
 //-----------------------------------------
-
-//-----------------------------------------
 Route::get('dictionary',
     [WatchmakingTermController::class, 'index'])->name('dictionary');
 
@@ -116,7 +109,5 @@ Route::get('/dictionary/termDetails/{id}',
 Route::post('/dictionary/updateTerm/{id}',
     [WatchmakingTermController::class, 'updateTerm']);
 //-----------------------------------------
-
-//TODO: scripty do public/js a vo view ich include/volat
 
 //TODO: ak sa nieco nepodari pridat zobrazenie preco
