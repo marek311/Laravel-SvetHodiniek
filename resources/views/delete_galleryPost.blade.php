@@ -15,6 +15,14 @@
 <div class="container-h-center">
     <h1>Vymazanie postu</h1>
 </div>
+<div class="container-h-center">
+    <div class="image-container">
+        <div class="image-wrapper">
+            <p>{{ $galleryPost->name }}</p>
+            <img class="infinite-scroll-trigger" src="{{ $galleryPost->picture }}" alt="{{ $galleryPost->name }}" width="300">
+        </div>
+    </div>
+</div>
 <div class="form-container">
     <form action="{{ route('gallery.delete', ['id' => $galleryPost->id]) }}" method="post">
         @csrf
