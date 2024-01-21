@@ -30,7 +30,7 @@ class WatchmakingTermController extends Controller
             'term' => $term,
             'explanation' => $explanation,
         ]);
-        return redirect('/dictionary')->with('success', 'Term added successfully!');
+        return redirect('/dictionary')->with('success', 'Watchmaking Term added successfully!');
     }
     public function deleteForm($id)
     {
@@ -50,7 +50,7 @@ class WatchmakingTermController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $watchmakingTerm->delete();
-        return redirect('/dictionary')->with('success', 'Watchmaking term deleted successfully!');
+        return redirect('/dictionary')->with('success', 'Watchmaking Term deleted successfully!');
     }
     public function getTermDetails($id)
     {
@@ -73,6 +73,6 @@ class WatchmakingTermController extends Controller
         $term->update([
             'explanation' => $explanation,
         ]);
-        return response()->json(['message' => 'Watchmaking term updated successfully']);
+        return response()->json(['message' => 'Watchmaking Term updated successfully']);
     }
 }
