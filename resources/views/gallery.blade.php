@@ -10,7 +10,7 @@
 <body>
 @auth
     <a href="{{ route('gallery.createForm') }}" class="add-button">
-        <button>Create Gallery Post</button>
+        <button>Vytvorenie nového postu</button>
     </a>
 @endauth
 <a href="{{ route('home') }}" class="back-link">
@@ -45,8 +45,8 @@
                 <img class="infinite-scroll-trigger" src="{{ $post->picture }}" alt="{{ $post->name }}" width="300">
                 @auth
                     @if(auth()->user()->id === $post->user_id || auth()->user()->role === 'admin')
-                        <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Edit</a>
-                        <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Delete</a>
+                        <a href="{{ route('gallery.updateForm', ['id' => $post->id]) }}" class="edit-link">Uprav</a>
+                        <a href="{{ route('gallery.deleteForm', ['id' => $post->id]) }}" class="delete-link">Vymaž</a>
                     @endif
                 @endauth
             </div>
@@ -57,7 +57,7 @@
     @endforeach
 </div>
 <div class="container-h-center">
-    <button id="loadMoreButton">Load More</button>
+    <button id="loadMoreButton">Načítaj viac</button>
 </div>
 <script>
     const userRole = "{{ auth()->check() ? auth()->user()->role : 'guest' }}";
@@ -75,8 +75,8 @@
             const isAdmin = userRole === 'admin';
             if (isAuthor || isAdmin) {
                 return `
-            <a href="/gallery/${postId}/edit" class="edit-link">Edit</a>
-            <a href="/gallery/delete/${postId}/confirm" class="delete-link">Delete</a>
+            <a href="/gallery/${postId}/edit" class="edit-link">Uprav</a>
+            <a href="/gallery/delete/${postId}/confirm" class="delete-link">Vymaž</a>
             `;
             }
             return '';
