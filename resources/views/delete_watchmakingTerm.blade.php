@@ -15,6 +15,10 @@
 <div class="container-h-center">
     <h1>Vymazanie pojmu</h1>
 </div>
+<div class="container-h-center">
+    <h2>{{ $watchmakingTerm->term }}</h2>
+    <p>{{ $watchmakingTerm->explanation }}</p>
+</div>
 <div class="form-container">
     <form action="{{ route('watchmakingTerm.delete', ['id' => $watchmakingTerm->id]) }}" method="post">
         @csrf
