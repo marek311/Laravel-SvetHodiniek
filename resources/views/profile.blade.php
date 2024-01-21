@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile</title>
+    <title>Profil</title>
     <link rel="stylesheet" href="{{ asset('styling_general.css') }}">
     <link rel="stylesheet" href="{{ asset('styling_profile.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
@@ -25,17 +25,17 @@
                 @csrf
             </form>
             <a href="#" onclick="document.getElementById('logout-form').submit();" class="nav-link">
-                <i class="bi bi-box-arrow-left person-icon"></i> Logout
+                <i class="bi bi-box-arrow-left person-icon"></i> Odhlásiť sa
             </a>
         @endauth
     </div>
     <div class="buttons-container">
         @guest
             <a href="{{ route('profile') }}" class="nav-link">
-                <i class="bi bi-person person-icon"></i> Profile
+                <i class="bi bi-person person-icon"></i> Profil
             </a>
-            <a href="{{ route('register') }}" class="button">Register</a>
-            <a href="{{ route('login') }}" class="button">Login</a>
+            <a href="{{ route('register') }}" class="button">Registrovať sa</a>
+            <a href="{{ route('login') }}" class="button">Prihlásiť sa</a>
         @endguest
     </div>
 </div>
