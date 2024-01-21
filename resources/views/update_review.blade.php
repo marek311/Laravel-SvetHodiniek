@@ -20,12 +20,12 @@
     @csrf
     @method('PUT')
     <label for="title">Meno hodiniek:</label>
-    <input type="text" id="title" name="title" value="{{ $review->watch_name }}" pattern="[A-Za-z0-9\s]+" title="Prosím, zadajte platné meno, iba písmená, číslice a medzery" required>
+    <input type="text" id="title" name="title" value="{{ $review->watch_name }}" pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný popis, iba písmená, číslice, medzery a .,!?" required>
     <div id="paragraphsContainer">
         @foreach ($review->paragraphs as $index => $paragraph)
             <div class="paragraphInputContainer">
                 <label for="content{{ $index }}">Obsah recenzie:</label>
-                <textarea id="content{{ $index }}" name="content[{{ $index }}]" required pattern="[A-Za-z0-9\s]+" title="Prosím, zadajte platný obsah recenzie, iba písmená, číslice a medzery">{{ $paragraph->paragraph_text }}</textarea>
+                <textarea id="content{{ $index }}" name="content[{{ $index }}]" required pattern="[A-Za-z0-9\s.,!?]+" title="Prosím, zadajte platný popis, iba písmená, číslice, medzery a .,!?">{{ $paragraph->paragraph_text }}</textarea>
                 <button type="button" onclick="deleteParagraph(this)">Vymaž paragraf</button>
             </div>
         @endforeach
