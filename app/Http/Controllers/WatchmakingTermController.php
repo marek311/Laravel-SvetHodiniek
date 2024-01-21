@@ -62,13 +62,13 @@ class WatchmakingTermController extends Controller
     }
     public function updateTerm(Request $request, $id)
     {
-        $term = WatchmakingTerm::findOrFail($id);
-        $this->validate($request, [
-            'explanation' => 'required|string',
-        ]);
         if (auth()->user()->role !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
+        $term = WatchmakingTerm::findOrFail($id);
+        $this->validate($request, [
+            'explanation' => 'required|string|regex:/^[A-Za-z0-9\s]+$/',
+        ]);
         $explanation = htmlspecialchars($request->explanation, ENT_QUOTES, 'UTF-8');
         $term->update([
             'explanation' => $explanation,
