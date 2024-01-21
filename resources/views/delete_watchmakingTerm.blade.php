@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Delete Watchmaking Term</title>
+    <title>Vymazanie pojmu</title>
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
 </head>
 <body>
@@ -13,16 +13,16 @@
     </svg>
 </a>
 <div class="container-h-center">
-    <h1>Delete Watchmaking Term</h1>
+    <h1>Vymazanie pojmu</h1>
 </div>
 <div class="form-container">
     <form action="{{ route('watchmakingTerm.delete', ['id' => $watchmakingTerm->id]) }}" method="post">
         @csrf
         @method('DELETE')
-        <label for="submit_button">Are you sure you want to delete this watchmaking term?</label>
+        <label for="submit_button">Naozaj chceš vymazať tento pojem?</label>
         <div class="button-container">
-            <button id="submit_button" type="submit">Delete Watchmaking Term</button>
-            <a href="{{ route('dictionary') }}" class="cancel-button">Cancel</a>
+            <button id="submit_button" type="submit">Vymazať</button>
+            <a href="{{ route('dictionary') }}" class="cancel-button">Zrušiť</a>
         </div>
     </form>
 </div>
