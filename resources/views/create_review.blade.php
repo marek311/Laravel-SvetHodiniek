@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
     <script src="{{ asset('scriptAddParagraphCreate.js') }}"></script>
     <script src="{{ asset('scriptDeleteParagraph.js') }}"></script>
+    <script src="{{ asset('scriptHandleFileSelect.js') }}"></script>
 </head>
 <body>
 <a href="{{ route('reviews') }}" class="back-link">
@@ -45,14 +46,5 @@
         <button type="submit">Create Review</button>
     </form>
 </div>
-<script>
-    document.getElementById('pictureFile').addEventListener('change', handleFileSelect);
-    function handleFileSelect(event) {
-        const fileNamePlaceholder = document.getElementById('file-name-placeholder');
-        const selectedFile = event.target.files[0];
-        if (selectedFile) fileNamePlaceholder.textContent = selectedFile.name;
-        else fileNamePlaceholder.textContent = '';
-    }
-</script>
 </body>
 </html>

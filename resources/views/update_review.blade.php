@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('styling_editPage.css') }}">
     <script src="{{ asset('scriptAddParagraphUpdate.js') }}"></script>
     <script src="{{ asset('scriptDeleteParagraph.js') }}"></script>
+    <script src="{{ asset('scriptHandleFileSelect.js') }}"></script>
     <title>{{ $review->watch_name }} edit review</title>
 </head>
 <body>
@@ -35,14 +36,5 @@
     <span id="file-name-placeholder"></span>
     <button type="submit">Update Review</button>
 </form>
-<script>
-    document.getElementById('pictureFile').addEventListener('change', handleFileSelect);
-    function handleFileSelect(event) {
-        const fileNamePlaceholder = document.getElementById('file-name-placeholder');
-        const selectedFile = event.target.files[0];
-        if (selectedFile) fileNamePlaceholder.textContent = selectedFile.name;
-        else fileNamePlaceholder.textContent = '';
-    }
-</script>
 </body>
 </html>
